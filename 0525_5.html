@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강상 선택자</title>
+    <style>
+        #copy {
+            /*  RGB: red, green, blue 0~255단계로 지정 */
+            /* 헥스코드 계산기 전환방법 계산기 프로그래머 16진수 전환 DEC에 RGB값입력 HEX에 출력*/
+            color: rgb(85, 26, 139);
+            /*color: #551a8b  */
+            
+            text-decoration: underline;
+
+        }
+        /* : 은 태그의 상태를 선택한다  */
+        #copy:hover {
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <p>사이트를 개발하다 보면 링크를 자주 사용한다. 개발초기를 링크 주소를 모를 수도 있다</p>
+    <a href="">자유게시판</a>
+    <a id="copy">링크처럼 만들기</a>
+</body>
+
+</html>
