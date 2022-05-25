@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일 : 외부(head), 내부(body), 인라인</title>
+    <!--외부 스타일-->
+    <style>
+        .b {
+            font-weight: bold;
+        }
+
+        .i {
+            font-style: italic;
+        }
+
+        .u {
+            text-decoration: underline;
+        }
+
+        .s {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body><!--내부 스타일은 재사용 할 수 없다-->
+    <div>
+        <b>dnflskfk whgdmsskfk</b><br/>
+        <i>dnflskfk whgdmsskfk</i><br/>
+        <u>dnflskfk whgdmsskfk</u><br/>
+        <s>dnflskfk whgdmsskfk</s>
+    </div>
+    <div>
+        <span class="b">dnflskfk whgdmsskfk</span><br/>
+        <span class="i">dnflskfk whgdmsskfk</span><br/>
+        <span class="u">dnflskfk whgdmsskfk</span><br/>
+        <span class="s">dnflskfk whgdmsskfk</span>
+    </div>
+</body>
+
+</html>
