@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            color: #ffffff;
+            text-align: center;
+            /* 내용 수평 가운데 */
+            line-height: 200px;
+            /* 내용이 한줄인 경우 수직 가운데 : 높이와 동일한 줄 간격 */
+            display: inline-block;
+            /*  */
+        }
+
+        #red {
+            background-color: red;
+        }
+        #red:hover{background-color: blue; cursor: pointer;}
+        #blue {
+            background-color: blue;
+            margin-left: -6px;
+        }
+        #blue:hover{background-color: red; cursor: pointer;}
+        #green {
+            background-color: green;
+            margin-left: -6px;
+        }
+        #green:hover{background-color: yellow; cursor: pointer;}
+        /* 각 div에 마우스가 호버되면 다른 디자인을 적용하시오 */
+    </style>
+</head>
+
+<body>
+    <div id="red">A</div>
+    <div id="green">B</div>
+    <div id="blue">C</div>
+</body>
+
+</html>
