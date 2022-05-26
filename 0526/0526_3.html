@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블 구조</title>
+    <style>
+        /* 
+           선택자 (selector) : css에서 html 요소를 선택하는 방법
+           tag 선택자 : 같은 모든태그를 선택                   1
+           class 선택자 : 분류명으로 어려개를 선택            10
+           id 선택자 : 이름으로 하나를 선택                  100
+        
+        
+        
+        */
+        table {
+            width: 600px;
+        }
+
+        table,
+        td {
+            border: 1px solid #880000; /* table 테두리 선을 만드는 속성 */
+            border-collapse: collapse; /* tdody, td 각각 테두리를 갖기에 하나로 만들어주는 속성  */
+            /* RGB 255, 255, 255 */
+        }
+
+        td {
+            height: 50px;
+            text-align: center;
+        }
+
+        .u{text-decoration: underline;}
+        #italic{font-style: italic;}
+
+        /* table은 자동 수직정렬이된다 (수평정렬만 해주면됨)*/
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="u" id="italic">제목1</th>
+                <th>제목2</th>
+                <th class="u">제목3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>내용1</td>
+                <td>내용2</td>
+                <td>내용3</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>맨밑1</td>
+                <td>맨밑2</td>
+                <td>맨밑3</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+
+</html>

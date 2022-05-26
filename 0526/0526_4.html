@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{width: 600px; height: 200px;}
+        table, td{border: 1px solid green;}
+    </style>
+</head>
+<body>
+    <!--table>tbody>tr*3>td*3 3행 3열 테이블 생성-->
+    <!--개꿀팁
+    table>tbody>tr*3>td*3-->
+    <table>
+        <tbody>
+            <tr>
+                <td colspan="2" rowspan="2"></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+               
+            </tr>
+            <tr>
+                <td></td>
+                <td rowspan="2"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
