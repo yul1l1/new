@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- size는 글자체에따라 변하므로 적합하지않다 -->
+    <style>
+        div{margin: 2px;}
+        input {
+            width: 150px;
+            height: 20px;
+        }
+    </style>
+    <title>input 요소들</title>
+</head>
+
+<body>
+    <div>
+        <form action="http://www.naver.com">
+            <input type="text" placeholder="아이디를 입력하세요" name="user_id" id="user_id" maxlength="10"><br>
+            <!-- name은 server / id는 html -->
+            <!-- Dos : denial of service -->
+    </div>
+    <div>
+        <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" maxlength="10"><br>
+    </div>
+    <div>
+        <button>클릭하세요</button>
+    </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>url(ulrincoded)을 표기하는 방법</h1>
+
+    <p>
+        live서버의 주소 : http://127.0.0.1:5500<br>
+
+        통신규약(protocol)
+        http://test.com 웹을 위한 통신 규약
+        ftp://test.com 파일 다운로드를 위한 통신규약
+
+        포트
+        실행중인 인터넷 프로그램들을 구별하는 번호
+        0~65535까지 사용가능
+        포트는 충돌하면 프로그램이 인터넷을 사용할 수 없다
+        저명한 프로그램들은 자신의 포트 번호를 가진다 ( 웹은 80, ftp는 21 )
+    </p>
+    <p>
+        그래서
+        http://127.0.0.1:5500 --> i:/html2
+        1.jpg의 url은
+        d:/lostark/1.jpg
+        http://127.0.0.1:5500/lostark.jpg
+
+
+    </p>
+    <img src="http://127.0.0.1:5500/0527/111.jpg" alt="디지몬" width="500px">
+    <img src="/img/222.jpg" alt="" width="500px">
+    <!-- d:/html에서 image 폴더는 보인다. 현재 폴더에서 image폴더를 열고 그안의 11.jpg를 가져와라 -> 상대주소 -->
+    <img src="/img/222.jpg" alt="" width="500px">
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>button</title>
+</head>
+
+<body>
+    <form action="http://www.naver.com">
+        <!-- 검증없이 전송되기에 사용되지않는다 -->
+        <input type="submit" value="전송하는 버튼">
+        <input type="button" value="그냥 버튼">
+    </form>
+    <!--검증된 전송버튼 
+            <button type="button">전송</button>
+            <input type="button">전송
+            -->
+    <!-- button이 form 안에 있으면 submit으로 동작 -->
+    <form action="http://www.naver.com">
+        <button type="">전송</button>
+    </form>
+</body>
+
+</html>

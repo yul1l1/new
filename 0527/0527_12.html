@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #page {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            height: 50px;
+            background-color: #f2c000;
+        }
+
+        nav {
+            height: 50px;
+            background-color: #44aaaa;
+        }
+
+        footer {
+            height: 50px;
+            background-color: #ff25b9;
+        }
+
+        /* 정보 css배치 시작 */
+        aside {
+            height: 200px;
+            width: 200px;
+            background-color: #77f100;
+            float: left;
+        }
+
+        section {
+            min-height: 400px;
+            width: 600px;
+            background-color: #22a8dd;
+            float: right;
+        }
+
+        #main {
+            overflow: hidden;
+        }
+
+        /* 정보 css배치 끝 */
+    </style>
+    <title>페이지 배치 가이드</title>
+</head>
+
+<body>
+    <div id="page">
+        <header>로고</header>
+        <nav>네비게이션바 메인 메뉴</nav>
+        <!-- float을 이용해 좌,우 배치
+             그 부모 div에 overflow:hidden 
+        -->
+        <div id="main">
+            <aside>부가 정보</aside>
+            <section>메인 정보</section>
+        </div>
+        <footer>회사 정보</footer>
+    </div>
+
+</body>
+
+</html>
