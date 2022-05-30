@@ -6,6 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>position 태그 사용하기</title>
+    <style>
+        header {
+            border: 1px solid red;
+            height: 100px;
+            width: 800px;
+            margin: 0 auto;
+            position: relative; /* 부모에 relative 설정 */
+        }
+
+        #search {
+            position: absolute; /* relative 가있는 부모 기준으로 이동 */
+            right: 20px;
+            top: 40px;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,9 +29,14 @@
         absolute는 static이 아닌 부모 기준으로 이동한다
         부모가 static이면 조부모 > 증조부모 순으로 static이 아닌 요소를 찾는다
         static이 아닌 조상이 없으면 화면 기준으로 이동한다 -->
-
-    <p>인천일보 아카데미</p>
-    <input><button>겅색</button>
+    <header>
+        <p>인천일보 아카데미</p>
+        <div id="search">
+            <input><button>겅색</button>
+    </header>
+    </div>
+    <nav style="width: 800px; height: 50px; margin: 0 auto; background-color: green;">
+    </nav>
 </body>
 
 </html>

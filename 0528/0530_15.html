@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>검색 창만들기</title>
+    <style>
+        input {
+            border-radius: 20px;
+            width: 561px;
+            height: 40px;
+            border: 1px solid #ccc;
+        }
+
+        #mather {
+            width: 561px;
+            height: 40px;
+            position: relative;
+        }
+
+        #ch {
+            position: absolute;
+            left: 20px;
+            top: 11px;
+        }
+
+        #key {
+            position: absolute;
+            right: 52px;
+            top: 11px;
+        }
+
+        #mic {
+            position: absolute;
+            right: 20px;
+            top: 11px;
+        }
+
+        input:hover {
+            counter-increment:;
+            box-shadow: 1px 1px 3px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mather">
+        <i id="ch" class="fa fa-search" aria-hidden="true"></i>
+        <input type="search">
+        <i id="key" class="fa fa-keyboard-o" aria-hidden="true"></i>
+        <i id="mic" class="fa fa-microphone" aria-hidden="true"></i>
+    </div>
+</body>
+
+</html>
