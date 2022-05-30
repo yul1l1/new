@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 레이아웃 속성 flex</title>
+    <style>
+        /* 부모 자식에게 걸수 있는 Flex */
+        .child {
+            width: 300px;
+            height: 100px;
+        }
+
+        /* flex 레이아웃
+           display:flex -> 자식들은 flex 방식으로 배치하겠다 (자식만, cascading)
+           
+           flex-direction -> 자식들을 배치하는 방향
+                 row            수평배치, 기본값
+                 column         수직배치   
+                 column-reverse 수직 역방향배치
+        */
+        /*
+           flex 방식은 두 개의 축이 생성된다(main 축, cross 축)
+           - main 축 : 자식들의 정령 방향
+           - cross 축 : 정령방향과 반대
+        */
+        .parent {
+            height: 100vh;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: right; /* 주축 방향 정렬 */
+            align-items: center; /* 반대축 방향 정렬 */
+        }
+
+
+        .box1 {
+            background-color: red;
+        }
+
+        .box2 {
+            background-color: blue;
+        }
+
+        .box3 {
+            background-color: yellow;
+        }
+
+        .box4 {
+            background-color: green;
+        }
+
+        .box5 {
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child box1">1</div>
+        <div class="child box2">2</div>
+        <div class="child box3">3</div>
+        <div class="child box4">4</div>
+        <div class="child box5">5</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3단 레이아웃</title>
+    <style>
+        #page {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        header,
+        nav,
+        footer {
+            border: 1px solid red;
+            height: 50px;
+        }
+
+        #main {
+            display: flex;
+        }
+
+        aside {
+            flex-grow: 1;
+            height: 200px;
+            width: 200px;
+            background-color: green;
+        }
+
+        section {
+            flex-grow: 4;
+            min-height: 600px;
+            width: 600px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>sementic 태그를 이용한 레이아웃</h1>
+    <p>header, nav, footer, section, article, aside</p>
+    <hr>
+    <div id="page">
+        <header></header>
+        <nav></nav>
+        <div id="main">
+            <aside></aside>
+            <section></section><!-- 높이를 모르는 곳 가상의 높이지정 min-hight:#;-->
+            <aside></aside>
+        </div>
+        <footer></footer>
+    </div>
+</body>
+
+</html>
