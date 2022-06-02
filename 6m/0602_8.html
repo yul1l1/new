@@ -8,19 +8,19 @@
   </head>
   <body>
     <h1>브라우저 화면 조작하기</h1>
-    <p>Hello world</p>
+    <p id="target">Hello world</p>
     <script> // 객체는 부라우저를 구성하는 부품이다
              // 객체는 기능과 값으로 구성된다
              // 기능은 함수라고 하고 값을 속성이라고 한다
       // . 하고나온 파란색은 값, 보라색은 기능
-       history.back();
-       history.forward();
-       history.go();
+       history.back()
+       history.forward()
+       history.go()
        // 무한새로고침
-       location.reload()
+       locationreload()
        // 주소이동 ex 로그인 성공 성공 페이지, 실패시 실패 페이지
        // location.href="http://www.naver.com";
-       console.log(location.search);
+       consolelog(location.search)
     </script>
   </body>
 </html>
