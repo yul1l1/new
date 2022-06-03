@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let culsius = prompt("섭씨 온도를 입력하세요");
+      let c = parseInt(culsius);
+      let f = c * 1.8 + 32;
+      console.log(f);
+      //
+      let pay = prompt("급여 입력");
+      let bonus = prompt("보너스 입력");
+      let p = parseInt(pay);
+      let b = parseInt(bonus);
+      let tax = (p + b) * 0.033;
+      console.log(tax);
+      //
+      let usernumber = prompt("숫자를 입력하세요");
+      let num1 = parseInt(usernumber);
+      let oneHundred = 100 - num1;
+      console.log(oneHundred);
+      //
+      let tire = prompt("개수를 입력하세요");
+      let tireCound = parseInt(tire);
+      let vehicle = tireCound / 4;
+      console.log(Math.floor(vehicle));
+      //
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //prompt 는 spring 으로 인식된다 (숫자는 문자에 포함가능하다)
+      let width = prompt("너비를 입력하세요");
+      let hight = prompt("높이를 입력하세요");
+      //spring을 미리 number로 변환
+      let num1 = parseInt(width);
+      let num2 = parseInt(hight);
+      let a = num1 + num2;
+      console.log(a);
+      let b = a / 3.3058;
+      console.log(b);
+    </script>
+  </body>
+</html>

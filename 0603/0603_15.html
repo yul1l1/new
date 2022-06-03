@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div><span id="m">83.25</span></div>
+    <div><span id="p"></span></div>
+    <div><span id="c">35</span></div>
+    <div><span id="f"></span></div>
+    <script>
+      let 제곱미터입력 = document.querySelector("#m").innerHTML; //가져오기
+      let 미터 = parseInt(제곱미터입력); // 타입변환, js여서 변환
+
+      let 섭씨입력 = document.querySelector('#c').innerHTML; // 가져오기
+      let 섭씨 = parseInt(섭씨입력); //타입 변환, js여서 변환
+
+      let 평 = 미터/3.3; // 계산
+      let 화씨 = (섭씨 * 1.8) + 32; // 계산
+
+      document.querySelector("#p").innerHTML = 평; // 출력
+      document.querySelector("#f").innerHTML = 화씨; // 출력
+     
+
+      
+    </script>
+  </body>
+</html>
