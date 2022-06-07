@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>null</title>
+  </head>
+  <body>
+    <div id="target"></div>
+    <script>
+      const target = document.querySelector("#target"); // null
+      //const target2 = document.getElementById('target');
+      target.style.color = "red";
+      target.innerHTML = "좋은나라";
+      console.log(target.id);
+
+      console.log(typeof target); // 변수는 하나의 값으로 이루어져있지만, 하나의 값으로는 작동하지않는다. 그래서 값이 다수가되면 객체가  된다.
+      const target1 = document.querySelector('#target1'); // null 발생 원인 구간
+      console.log(target1); // 에러가 나지않는다
+      console.log(typeof target1); // 에러가 나지않는다
+      console.log(target1.id); // 오류발생구간이지만 문제구간이아니다
+    
+      // null 의 type은 object 다 / null이 오는 상황은 오타시 발생
+      /* 변수는 값1개 지정 
+         object 변수는 리모콘
+         객체는 가리킨다 변수는 값을 지정할수없다 */
+
+
+    </script>
+  </body>
+</html>

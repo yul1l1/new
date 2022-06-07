@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>변수에 따른 에러</title>
+  </head>
+  <body>
+    <script>
+       // 변수를 만드느 것 : 변수의 선언 (define)
+       // 변수의 최초값을 주는 것 : 초기화 (initializer)
+
+       //let z =10; 선언과 초기화르 동시에
+       let x; // 에러
+       let a; // 선언되지 않음
+       console.log(a);
+
+       const a; // Missing initializer in const declaration
+       console.log(a);
+    </script>
+  </body>
+</html>

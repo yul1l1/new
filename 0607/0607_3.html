@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bom과 Dom</title>
+  </head>
+  <body>
+    <h1>js와 웹브라우저를 연결하는 표준(interface) : Bom</h1>
+    <h1>Bom 중에서 제일 많이 사용하는 document: Dom</h1>
+    <div id="target"></div>
+    <script>
+      // Bom 
+      window.alert('dd');
+      console.log(location.search);
+      // history.back();
+
+      //Dom 
+      document.querySelector('#target').innerHTML="dd";
+    </script>
+  </body>
+</html>
