@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>html 요소도 객체다</title>
+  </head>
+  <body>
+    <input type="checkbox" data-no="111" />
+    <div>과자</div>
+    <input type="checkbox" data-no="75" />
+    <div>과아자</div>
+    <input type="checkbox" data-no="123" />
+    <div>과자아</div>
+    <div id="hello" class="red" data-value="11">안녕하세요</div>
+    <script>
+      // Dom : js가 html에 접근하기 위한 표준
+      //       js가 선택자를 사용하면 html요소를 객체로 바꿔준다
+      const div = document.querySelector("#hello");
+      console.log(div);
+      console.log(div.id);
+      console.log(div.style.color);
+    </script>
+  </body>
+</html>

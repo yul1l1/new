@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>null</title>
+  </head>
+  <body>
+    <div id="hello"></div>
+    <script>
+      const div = document.querySelector('#hi');
+
+      // 변수는 값을 1개 저장한다
+      // 그러면 color가 저장하고 있는 값은 뭐야? 객체번호
+      // color 는 값이 아닌 객체번호를 가진다
+      // color 는 객체 그 자체가 아니라 객체의 리모컨 역할
+      const color = { red:255, green: 0, blue: 0};
+      // color 는 객체를 가리킨다(참조타입 참조변수) 
+      console.log(color.red);
+      // null : 가르키는 대상이 없다. 적용 대상이 없는 것 뿐이라 타입은 존재한다(object) 
+      console.log(div);
+      console.log(typeof div);
+      console.log(div.id); // 대상이 없는데 사용하려했기에 에러가 발생한다. 
+    </script>
+  </body>
+</html>
