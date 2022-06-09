@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const ar = [];
+      let index = 0;
+      function chooseMenu() {
+       const ChineseMenu = document.querySelector("#menu").value;
+        ar[index] = ChineseMenu;
+        index++;
+        console.log(ar);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="menu">
+      <select>
+        <option>짜장</option>
+        <option>짬뽕</option>
+        <option>볶음밥</option>
+      </select>
+      <div>
+        <div>탕수육<input type="radio" name="f"/></div>
+        <div>깐풍기<input type="radio" name="f"/></div>
+        <div>라조기<input type="radio" name="f"/></div>
+      </div>
+    </div>
+    <button onclick="chooseMenu()">선택</button>
+  </body>
+</html>

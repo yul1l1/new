@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select id="siksa" onchange="add_siksa();">
+      <option disabled selected>메뉴를 선택하세요</option>
+      <option>짜장</option>
+      <option>짬뽕</option>
+      <option>볶음밥</option>
+    </select>
+    <select id="yori" onchange="add_yori();">
+      <option disabled selected>메뉴를 선택하세요</option>
+      <option>탕수육</option>
+      <option>라조기</option>
+      <option>깐풍기</option>
+    </select>
+    <div id="result"></div>
+
+    <script>
+      const menu = [];
+      let index = 0;
+      function add_siksa() {
+        const food = document.querySelector("#siksa").value;
+        munu[index] = food;
+        index++;
+        document.querySelector("#result").innerHTML = munu;
+      }
+      function add_yori() {
+        const food = document.querySelector("#yori").value;
+        munu[index] = food;
+        index++;
+        console.log(menu);
+      }
+    </script>
+  </body>
+</html>

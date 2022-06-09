@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>과일 선택 콘솔찍기</title>
+    <script>
+      const ar = [];
+      let index = 0;
+      function check() {
+        const fruit = document.querySelector("#fruit").value;
+        ar[index] = fruit;
+        index++;
+        console.log(ar);
+      }
+    </script>
+  </head>
+  <body>
+    <select id="fruit">
+      <option>사과</option>
+      <option>바나나</option>
+      <option>수박</option>
+    </select>
+    <button onclick="check();">추가</button>
+  </body>
+</html>
