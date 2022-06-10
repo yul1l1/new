@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>색변환</title>
+    <style>
+      #page {
+        width: 800px;
+        margin: 0 auto;
+      }
+      #container {
+        height: 400px;
+      }
+      input {
+        width: 70%;
+      }
+    </style>
+    <script>
+      // 템플릿 문자열은 js 컬러값주는법
+      function changeColor() {
+          const contain = document.querySelector("#container");
+          const redInput = document.querySelector("#red");
+          const redSpan = document.querySelector("#red_span");
+          const red = redInput.value;
+          redSpan.innerHTML = red.value;
+          contain.style.backgroundColor = `rgb(${red},0,0)`;
+        
+      }
+    </script>
+  </head>
+  <body onload="changeColor()">
+    <div id="page">
+      <div id="container"></div>
+      <div>
+        RED<input
+          type="range"
+          id="red"
+          min="0"
+          max="255"
+          onchange="change_red()"
+        />
+        <span id="red_span"></span>
+      </div>
+      <div>
+        GREEN<input
+          type="range"
+          id="green"
+          min="0"
+          max="255"
+          onchange="change_green()"
+        />
+        <span id="green_span"></span>
+      </div>
+      <div>
+        BLUE<input
+          type="range"
+          id="blue"
+          min="0"
+          max="255"
+          onchange="change_blue()"
+        />
+        <span id="blue_span"></span>
+      </div>
+    </div>
+  </body>
+</html>

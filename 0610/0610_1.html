@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열[]</title>
+  </head>
+  <body>
+    <script>
+      //배열 index를 이용한 출력
+      //참조 변수 : 일반변수는 한가지 값만 가져야한다
+      //값을 가지는 변수가아니라 값을 가르키는 변수다 
+      const saveNumber = [75, 80, 90]; // 일반적으로 배열은 const
+      saveNumber[3] = 100; // const지만 값을 바꾸는 것이 아니기에 추가할 수 있다
+      // saveNumber = [120, 140]; 이경우 에러가난다 : const는 값을 추가할 수 없다
+      console.log(saveNumber[3]);
+      console.log(typeof saveNumber); //object 
+      
+     
+
+    </script>
+  </body>
+</html>

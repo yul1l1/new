@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>전위 후위 연산자</title>
+  </head>
+  <h1>2항 연산자</h1>
+  <p>산술연산자 : + - * / %</p>
+  <!-- html entity : 특수 문자 -->
+  <p>조건연산자 : > > = &lt; &lt; = == === != !==</p>
+  <p>논리연산자 : && ||</p>
+  <body>
+    <script>
+      const a = "5";
+      const b = 5;
+      // ==, !=는 typeof (타입)을 고려하지 않고 비교
+      console.log(a == b);
+      // ===, !==는 typeof (타입)을 고려 > 멋대로 타입 바꾸지마
+      console.log(a === b);
+
+      const p = null,
+        q = null;
+      const x = undefined,
+        y = undefined;
+      //undefined, null은 조건연산자로 비교 가능
+      console.log(p == q);
+      console.log(p === q);
+      console.log(x == y);
+      console.log(x === y);
+      //객체는 비교불가능하다 .항상 false가 나온다
+      const obj1 = { irum: "홍길동" };
+      const obj2 = { irum: "홍길동" };
+      console.log(obj1 == obj2);
+      console.log(obj1 === obj2);
+      
+      const m = 'hello'*5;
+      console.log(isNaN(m));
+      console.log(isNaN(15))
+           
+ </script>
+  </body>
+</html>

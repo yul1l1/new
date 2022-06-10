@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>계산기</title>
+    <script>//https://pafa.tistory.com/107
+      function calculat() {
+        const value1 = document.querySelector("#value1");
+        const value2 = document.querySelector("#value2");
+        const oper = document.querySelector("#oper");
+        const calcula = document.querySelector("#result");
+        const val1 = parseInt(value1.value);
+        const val2 = parseInt(value2.value);
+        let calcResult;
+        if (oper.value == "+") {
+          calcResult = val1 + val2;
+        } else if (oper.value === "-") {
+          calcResult = val1 - val2;
+        } else if (oper.value === "*") {
+          calcResult = val1 * val2;
+        } else {
+          calcResult = val1 / val2;
+        }
+        calcula = calcResult;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>+ - * /</h1>
+    <input type="text" id="Value1" />
+    <select id="oper">
+      <option disabled selected>사칙연산 선택</option>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+    <input type="text" id="value2" />
+    =
+    <input type="text" disabled id="result" />
+    <button onclick="calculat()">계산하기</button>
+  </body>
+</html>

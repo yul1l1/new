@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>합격여부확인</title>
+    <script>
+      //국어 영어 성적을 입력받아 평균이 90이상이면 우수, 70이상이면 통과, 미만이면 재시험
+      function result() {
+        const kor = document.querySelector("#kor");
+        const eng = document.querySelector("#eng");
+
+        const korScore = parseInt(kor.value);
+        const engScore = parseInt(eng.value);
+        const somScore = (korScore + engScore) / 2;
+        kor.value="";
+        eng.value="";
+        kor.focus();
+        console.log(korScore, engScore);
+        console.log(somScore);
+        if (somScore > 100) {
+          alert("다시 입력해주세요");
+          //함수 종료
+          return;
+        } else if (somScore >= 90) {
+          alert("우수 입니다");
+        } else if (somScore >= 70) {
+          alert("합격 입니다");
+        } else {
+          alert("재시험 입니다");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <div>
+        <label for="kor">국어</label>
+        <input type="number" id="kor" min="0" />
+      </div>
+      <div>
+        <label for="eng">영어</label>
+        <input type="number" id="eng" min="0" />
+      </div>
+      <button onclick="result()">결과확인</button>
+    </div>
+  </body>
+</html>

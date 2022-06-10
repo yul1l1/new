@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <label for="height">키</label>
+      <input type="text" id="height" placeholder="키를 cm단위로 입력하세요" />
+    </div>
+    <div>
+      <label for="weight">체중</label>
+      <input type="text" id="weight" placeholder="체중을 kg단위로 입력하세요" />
+    </div>
+    <button onclick="print()">적정체중 확인하기</button>
+    <div>적정 체중 : <span id="output"></span></div>
+    <script>
+      // 1. 입력 - input 2개
+      // 2. 처리 - 적정체중 계산 > 적정범위는 0.9 ~ 1.1
+      // 3. 출력 - 
+      function print() {
+        const hight = document.querySelector("#input");
+        const width = parseInt(hight.value);
+        const properWeight = width - 105;
+        hight.value = "";
+        hight.focus();
+        document.querySelector("#output").innerHTML = properWeight;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>전위 후위 연산자</title>
+  </head>
+  <input type="text" id="jumsu">
+  <button onclick="add()">추가</button>
+  <body>
+    <script>
+      const ar=[];
+      //let index1 = 0; 후위의 경우는 0을 대입하지만
+      let index2= -1; // 전위의 경우 먼저 연산이되어 -1을 해야한다
+      function add(){
+        const input = document.querySelector('#jumsu');
+        // input.value을 ar에 추가하시오
+        // ar[index1++]=input.value;
+        ar[++index2]=input.value;
+        console.log(ar);
+      }
+    </script>
+  </body>
+</html>

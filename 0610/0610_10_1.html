@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <label for="height">키</label>
+      <input type="text" id="height" placeholder="키를 cm단위로 입력하세요" />
+    </div>
+    <div>
+      <label for="weight">체중</label>
+      <input type="text" id="weight" placeholder="체중을 kg단위로 입력하세요" />
+    </div>
+    <button onclick="print()">적정체중 확인하기</button>
+    <script>
+      function print() {
+        const height = document.querySelector("#height");
+        const weight = document.querySelector("#weight");
+        const myWeight= parseInt(weight.value);
+        const proper_weight = parseInt(height.value) - 105;
+        const min = proper_weight * 0.9;
+        const max = proper_weight * 1.1;
+        if (myWeight <= max && myWeight >= min) {
+          alert("적정 체중입니다.");
+        } else {
+          alert("적정 체중이 아닙니다.");
+        }
+      }
+      console.log();
+    </script>
+  </body>
+</html>

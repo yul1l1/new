@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="summit1" />
+    <button onclick="add()">배열 추가</button>
+    <div id="end"></div>
+
+    <script>
+      // 1. 입력 > input
+      // 2. 배열, index 는 세트다
+      const arr = []; // 배열
+      let index = 0; // 배열
+      function add() {
+        const input = document.querySelector("#summit1"); //value 아래로
+        arr[index] = parseInt(input.value); //value 위치변경
+        input.value=""; //
+        input.focus(); //커서 안꺼지게하기
+        index++;
+        document.querySelector('#end').innerHTML = arr;
+      }
+    </script>
+  </body>
+</html>

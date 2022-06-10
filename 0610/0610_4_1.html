@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const input = [];
+      let index = 0;
+      function addB() {
+        const arr = document.querySelector("#summit");
+        input[index] = parseInt(arr.value);
+        arr.value = "";
+        arr.focus();
+        index++;
+        document.querySelector("#output").innerHTML = input;
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="summit" />
+    <button onclick="addB()">추가</button>
+    <div id="output"></div>
+  </body>
+</html>
