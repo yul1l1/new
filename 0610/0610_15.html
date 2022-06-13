@@ -20,13 +20,12 @@
     <script>
       // 템플릿 문자열은 js 컬러값주는법
       function changeColor() {
-          const contain = document.querySelector("#container");
-          const redInput = document.querySelector("#red");
-          const redSpan = document.querySelector("#red_span");
-          const red = redInput.value;
-          redSpan.innerHTML = red.value;
-          contain.style.backgroundColor = `rgb(${red},0,0)`;
-        
+        const contain = document.querySelector("#container");
+        const redInput = document.querySelector("#red");
+        const redSpan = document.querySelector("#red_span");
+        const red = redInput.value;
+        redSpan.innerHTML = red.value;
+        contain.style.backgroundColor = `rgb(${red},0,0)`;
       }
     </script>
   </head>

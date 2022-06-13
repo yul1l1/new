@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>표기법</title>
+  </head>
+  <body>
+    <p id="target">우리나라</p>
+    <!-- 
+        마우스엔터, 클릭 두 이벤트 처리
+        엔터 되면 배경색을 노랑, 클리하면 글자색을 빨강색으로
+     -->
+    <script>
+      const a = document.querySelector("#target");
+      // 방법.1
+      // a.onmouseenter = toYellow;
+      // function toYellow() {
+      // a.style.backgroundColor = 'yellow';}
+      
+
+      // 방법.2
+      a.onmouseenter = function () {
+        a.style.backgroundColor = "yellow";
+      };
+      // 이름을 생략해도 문제가 없다면 js는 생략 가능(익명함수)
+      a.onclick = function () {
+        // ()앞에 익명함수 사용
+        a.style.color = "red";
+      };
+    </script>
+  </body>
+</html>

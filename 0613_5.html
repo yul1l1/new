@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>증감연산자</title>
+  </head>
+  <body>
+    <script>
+      const a = 10,
+        b = 20;
+      // 증감연산자는 위치에 상관없이 변수를 증감시킴
+      // 다른 연산과 함께 사용하면 전위는 증감부터, 후위는 다른 연산부터
+      let c = a++; //후위
+      let d = ++a; //전위
+
+      // a= 10,b=21, c=10, d=21
+
+      console.log(a++); // 11을 출력하고 a는 증가 > 12
+      console.log(++b); // 증가한 다음 출력 12
+    </script>
+  </body>
+</html>

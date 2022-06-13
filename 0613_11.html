@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>widows</title>
+    <script>// js의 위치 onload 는 위치에 상관없이 실행시키기 위해 사용한다
+            // 단 onload는 2번이상 사용하면 덮어쓴다 두번 사용하지 말자
+      window.onload = function () {
+        const input = document.querySelector("#value");
+        const even = document.querySelector("#even");
+        const odd = document.querySelector("#odd");
+
+        even.onclick = function(){
+          const value = parseInt(input.value)
+          const result = value%2? "짝수가 아닙니다" : "짝수입니다";
+          document.querySelector('#result').innerHTML = result;
+        }
+
+        odd.onclick= function(){
+          const value = parseInt(input.value);
+          const result = value%2? "홀수입니다" : "홀수가 아닙니다";
+          document.querySelector('#result').innerHTML = result;
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <input type="text" id="value" />
+    <button id="even">짝수 판정</button>
+    <button id="odd">홀수 판정</button>
+    <div id="result"></div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>삼항 연산자</title>
+  </head>
+  <body>
+    <input type="text" id="value" />
+    <button id="even">짝수 판정</button>
+    <button id="odd">홀수 판정</button>
+    <div id="result"></div>
+    <script>
+      const number = document.querySelector("#value");
+      document.querySelector("#even").onclick = function () {
+        const value = parseInt(number.value);
+        const even = value % 2 ? "짝수가 아닙니다" : "짝수입니다";
+        document.querySelector("#result").innerHTML = even;
+      };
+
+      document.querySelector("#odd").onclick = function () {
+        const value = parseInt(number.value);
+        const odd = value % 2 ? "홀수입니다" : "홀수가 아닙니다";
+        document.querySelector("#result").innerHTML = odd;
+      };
+    </script>
+  </body>
+</html>

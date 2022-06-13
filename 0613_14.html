@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>논리 연산자</title>
+    <script>
+      window.onload = function () {
+        const ea = document.querySelector("#kor");
+        const lish = document.querySelector("#eng");
+
+        result.onclick = function () {
+          const kor = parseInt(ea.value);
+          const eng = parseInt(lish.value);
+          const score = kor && eng >= 70 ? "통과" : "재시험";
+          document.querySelector("#end").innerHTML = "결과 확인 : " + score;
+          console.log(kor, eng);
+          console.log(score);
+          console.log(typeof score);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <!-- 국어 점수와 영어 점수를 입력받아 모두 70점 이상이면 통과,
+            아니면 재시험이라고 출력하시오 -->
+    <input type="text" id="kor" />
+    <input type="text" id="eng" />
+    <button id="result">결과 확인</button>
+    <div id="end">결과 확인 :</div>
+  </body>
+</html>

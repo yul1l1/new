@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>논리 연산자(BMI 계산기)</title>
+    <script>
+      window.onload = function () {
+        // console.log(체중 / (키 * 키));
+        const height = document.querySelector("#height");
+        const weight = document.querySelector("#weight");
+        check.onclick = function () {
+          const heightInput = parseInt(height.value);
+          const weightInput = parseInt(weight.value);
+          const heightScore = heightInput / 100;
+          const bmi = weightInput / (heightScore * heightScore);
+          console.log(bmi);
+          const obesity = bmi >= 25 ? "과체중 입니다" : "과체중이 아닙니다";
+          console.log(obesity);
+          // document.querySelector("#result").innerHTML = obesity;
+          result.innerHTML = `bmi는 ${bmi}이고 ${obesity}`; //템플릿 문자열
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <input type="text" id="height" placeholder="키를 입력하세요" /><br />
+    <input type="text" id="weight" placeholder="체중을 입력하세요" />
+    <button id="check">여부 확인</button><br />
+    <div id="result"></div>
+  </body>
+</html>

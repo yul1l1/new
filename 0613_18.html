@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체 배열</title>
+  </head>
+  <body>
+    <script>
+      // 여러 종류의 데이터로 하나의 정보를 구성 : 객체
+      // 어떤 정보가 여러개 : 배열
+
+      //for 문 배열
+      const ar = [3, 5, 7, 9];
+      for (let i = 0; i <= 3; i++) {
+        console.log(ar[i]);
+      }
+
+      const br = [55, 44, 7777, 55, 66, 33, 22];
+      for (let j = 0; j < br.length; j++) {
+        console.log(br[j]);
+      }
+      // of 반복문 br의 원소가 하나씩 ob에 담긴다.
+      for (const ob of br) {
+        console.log(ob);
+      }
+      const cr = [1, 2, 3, 4, 5];
+      let sum = 0;
+
+      for (let c = 0; c < cr.length; c++) {
+        sum += cr[c];
+        console.log(sum);
+      }
+
+      for (const ab of cr) {
+        // sum = sum + ob;
+        sum += ab;
+        console.log(sum);
+      }
+    </script>
+  </body>
+</html>

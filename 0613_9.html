@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>삼항 연산자 id</title>
+  </head>
+  <body>
+    <input type="text" id="value1" />
+    <button id="thr">3의배수 판정</button>
+    <button id="fiv">5의배수 판정</button>
+    <div id="result"></div>
+    <script>
+      // 숫자를 입력한 후 버튼을 각각 배수여부를 판정해 출력하시오
+      // 실행 순서 파악하기
+      const value1 = document.querySelector("#value1");
+      // const val = parseInt(value1.value); function 밖에서 입력값이 없는데 value로 변환했기때문에 NaN가 뜬다 따라서 function 내부에 위치해야한다 함수가 실행할때의 순서를 파악하자
+      document.querySelector("#thr").onclick = function () {
+        const val = parseInt(value1.value);
+        const multipleOfThree =
+          val % 3 === 0 ? "3의 배수 입니다" : "3의 배수가 아닙니다";
+        document.querySelector("#result").innerHTML = multipleOfThree;
+      }
+
+      document.querySelector('#fiv').onclick = function () {
+        const val = parseInt(value1.value);
+        const multipleOfFive =
+          val % 5 === 0 ? "5의 배수 입니다" : "5의 배수가 아닙니다";
+        document.querySelector("#result").innerHTML = multipleOfFive;
+      }
+      
+
+  
+    </script>
+  </body>
+</html>
