@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for 반복문</title>
+  </head>
+  <body>
+    <script>
+      const ar = [
+        { kor: 77, eng: 90 },
+        { kor: 68, eng: 88 },
+        { kor: 88, eng: 72 },
+      ];
+      let total = 0;
+      let tocal = 0;
+      for (const br of ar) { //for 내부 scope에 들어가야할 함수와 들어가지 말아야 할 함수 파악하기 
+        total += br.eng; // ex. consol.log()가 for scope 내부에 위치하면 
+        tocal += br.kor; // 반복되기 때문에 지정된 수 만큼 반복출력된다
+      }
+      console.log(`영어 합계 : ${total}, 영어 평균 : ${Math.floor(total/ar.length)}`); //템플릿 문자열 ES6
+      console.log(`국어 합계 : ${tocal}, 국어 평균 : ${Math.floor(tocal/ar.length)}`);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반복문</title>
+  </head>
+  <body>
+    <script>
+      // for 반복문 - 숫자를 센다 , 배열을 찍은것이고
+      const ar = [1,2,3,4,5]
+      let i = 0;
+      for(let i = 0; i<ar.length; i++){
+        console.log(ar[i])
+      }
+
+      // i의 스코프 밖이여서 에러가 난다
+      // console.log(i)
+
+      // ES6 of 반복문 - 배열의 값을 하나씩 꺼낸다. 배열이 끝나면 자동종료. 배열값은 절대 변하지않는다
+      for (const or of ar) {
+        console.log(or)
+      }
+      
+    </script>
+  </body>
+</html>

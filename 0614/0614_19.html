@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jQuery 조건문</title>
+    <style>
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <script>
+      //영어 점수를 ul에 출력하시오. 80점 이상이면 빨강색으로 하시오.
+      //영어 점수의 합계를 div에 출력하시오.
+      //부트스트랩 페이지네이션
+      window.onload = function () {
+        const arr = [
+          { kor: 77, eng: 80 },
+          { kor: 75, eng: 70 },
+          { kor: 80, eng: 90 },
+        ];
+        const ul = $("ul");
+        const div = $("div");
+        let sum = 0;
+        for (const engScore of arr) {
+          // for문 안에는 최소한의 함수만 위치한다
+          if (engScore.eng >= 80) {
+            $(`<li>영어 : ${engScore.eng}</li>`)
+              .appendTo(ul)
+              .css("list-style", "none")
+              .css("color", "red");
+          } else {
+            $(`<li>영어 : ${engScore.eng}</li>`)
+              .appendTo(ul)
+              .css("list-style", "none");
+          }
+          sum += engScore.eng;
+        }
+        div.text(`영어점수합계 : ${sum}점`);
+      };
+    </script>
+  </head>
+  <body>
+    <ul></ul>
+    <div></div>
+  </body>
+</html>

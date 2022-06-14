@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jQuery 조건문</title>
+    <script>
+      // 80이상의 수와 80이상의 수의 합계
+      window.onload = function () {
+        const kor = [77, 88, 65, 80];
+        const list = $("#list");
+        const sum = $("#sum");
+        let score = 0;
+        for (const more of kor) {
+          if (more >= 80) {
+            $(`<li>${more}</li>`).appendTo(list).css("list-style", "none");
+            score += more;
+          }
+          sum.text(score);
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <ul id="list"></ul>
+    <div id="sum"></div>
+  </body>
+</html>

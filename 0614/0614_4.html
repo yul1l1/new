@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js의 this</title>
+  </head>
+  <body>
+    <script>
+      //방법1 / 실제 사용예
+      const minen = {
+        irum: "leeYul",
+        kor: 90,
+        eng: 80,
+        totalJumsu: function () {
+          console.log(
+            this.irum + "의 평균점수 는" + (this.kor + this.eng) / 2 + "점"
+          );
+        },
+      };
+      minen.totalJumsu();
+      // 방법2
+      const mine = {};
+      mine.irum = "LeeYul";
+      mine.kor = 90;
+      mine.eng = 80;
+      mine.totalJumsu = function () {
+        const avg = (this.kor + this.eng) / 2;
+        console.log(`${this.irum}의 평균점수 는${avg}점`);
+      };
+
+      mine.totalJumsu();
+    </script>
+  </body>
+</html>

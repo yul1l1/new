@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jQuery 조건문</title>
+    <script>
+      window.onload = function () {
+        const kor = [77, 88, 65, 80];
+        const target = $("#target");
+        for (const score of kor) {
+          if (score >= 70) {
+            $(`<li>${score}</li>`).appendTo(target).css('list-style','none');
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <ul id="target"></ul>
+  </body>
+</html>

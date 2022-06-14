@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scope</title>
+  </head>
+  <body>
+    <script>
+      // scope : 변수의 사용범위 (생존범위) , 로컬스코프, 글로벌스코프로 나뉜다
+      // let, const - {}scope를 생성(es6)
+      // var - 함수가 스코프를 생성(es5)
+      let i = 10;
+
+      {
+        let j = 20;
+        console.log(i);
+        {
+          let k = 90;
+        }
+      }
+
+      console.log(i);
+      console.log(j);
+      console.log(k)
+    </script>
+  </body>
+</html>

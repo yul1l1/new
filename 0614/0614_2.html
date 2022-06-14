@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js의 this</title>
+  </head>
+  <body>
+    <script>
+      const student = {
+        kor: 77,
+        eng: 80,
+        prinTotal: function () {
+          console.log(this.kor + this.eng);
+        },
+      };
+      student.insa = function () {
+        console.log(this.kor + this.eng);
+      };
+
+
+      student.insa();
+      student.prinTotal();
+    </script>
+  </body>
+</html>

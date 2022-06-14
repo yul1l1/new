@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for 반복문</title>
+  </head>
+  <body>
+    <script>
+      const arr = [
+        { kor: 77, eng: 90 },
+        { kor: 68, eng: 88 },
+        { kor: 88, eng: 72 },
+      ];
+      let korScore = 0;
+      let engScore = 0;
+
+      for (const brr of arr) {
+        korScore += brr.kor;
+        engScore += brr.eng;
+      }
+      const cl = korScore + engScore;
+      console.log(`국어합계 : ${korScore}`);
+      console.log(`영어합계 : ${engScore}`);
+      console.log(`합계 점수 : ${cl}`);
+    </script>
+  </body>
+</html>
