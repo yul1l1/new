@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>JSON</title>
+    <script>
+     </script>
+  </head>
+  <body>
+    <!-- 객체를 문자열로 표시하는 산업표준 -->
+    <script>
+      const obj = {irum:'홍길동',nai:20};
+
+      //js객체를 json 문자열로 변환
+      const json = JSON.stringify(obj) // 변환 
+      console.log(json)
+
+      //json 문자열을 js객체로 변환
+      const result = JSON.parse(json) // 변환
+      console.log(result)
+    </script>
+  </body>
+</html>

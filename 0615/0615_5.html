@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>홀짝은 %사용</title>
+  </head>
+  <body>
+    <script>
+      const score = 75;
+      //점수를 입력받아 90점이상이면 우수, 70점이상이면 보통, 아니면 재시험
+      function test(copyScore) {
+        if (copyScore >= 90) {
+          return "우수";
+        } else if (copyScore >= 70) {
+          return "보통";
+        } else {
+          return "재시험";
+        }
+      }
+      console.log(test(score));
+
+      //홀짝을 판정하는 함수를 정의하시오
+      //if 사용
+      function oddeven(copyNumber) {
+        if (copyNumber % 2) {
+          return "홀수";
+        } else {
+          return "짝수";
+        }
+      }
+
+      // 결과가 2개중 하나라면 boolean을 고려해야한다 (사용시 코드가 짧아진다)
+      // 삼항연산자 사용
+      function oddEven(copyNumber) {
+        return copyNumber % 2 === 0 ? "짝수" : "홀수";
+      }
+
+      function isOdd(value) {
+        return value % 2 === 0 ? "true" : "false";
+      }
+      console.log(oddEven(score));
+    </script>
+  </body>
+</html>

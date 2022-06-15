@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>평균 계산 재사용함수</title>
+  </head>
+  <body>
+    <script>
+      const ar = [55, 66, 77, 88, 45];
+      const br = [44, 33, 22];
+
+      // 평균을 계산하는 함수를 정의하시오
+      // 함수가 작업하는 데 필요한 모든 변수 가 모든 변수는
+      // 함수가 가지고 있어야 한다
+      // 함수의 입력은 여러개 가능하고 출력은 하나(1가지 일만해라)
+      function average(arr) {
+        let sum = 0;
+        for (let score of arr) {
+          // score/=arr.length
+          // sum += score;
+          sum += score;
+        }
+        const com = sum / arr.length;
+        return com;
+      }
+      console.log(average(ar));
+      console.log(average(br));
+    </script>
+  </body>
+</html>

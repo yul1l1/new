@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>jQuery에서 js</title>
+    <script>
+      window.onload = function () {
+        const ar = [
+          { irum: "홍길동", jumsu: 80 },
+          { irum: "전우치", jumsu: 75 },
+        ];
+        function printOfAr(arr) {
+          const obj1 = $("#list");
+          for (const ob of arr) {
+            $(`<li>${ob.jumsu}</li>`).appendTo(obj1);
+          }
+          // const ul = $('ul')
+          //점수를 ul안에 출력하는 함수를 만드시오
+          //jQuery로 선택한 객체는 자바스크립트 객체 + 양념
+          //jQuery로 다중선택하게되면 js로 바뀌게되서 다시 $를사용해서 jQuery로
+          // return $(`<li>${arrCapy}</li>`).appendTo(ul)
+        }
+        printOfAr(ar);
+        // 아래를 보면 jQuery와 js 의 작동차이를 알 수 있다
+        const obj1 = $("#list");
+        const obj2 = document.querySelector("#list");
+        console.log(obj1);
+        console.log(obj2);
+        console.log($(obj2));
+      };
+    </script>
+  </head>
+  <body>
+    <ul id="list"></ul>
+  </body>
+</html>

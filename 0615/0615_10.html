@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>재사용함수</title>
+    <script>
+      window.onload = function () {
+        const ar = [
+          { irum: "홍길동", jumsu: 80 },
+          { irum: "전우치", jumsu: 75 },
+        ];
+
+        function scoreOf(listOf) {
+          const list = $("#list"); // $를 사용하지않으면 js인지 jQurey인지 구별되지않는다 꼭 붙히자
+          const paragraph = $("#paragraph");
+          let sum = 0;
+          for (const point of listOf) {
+            $(`<li>${point.irum}의 점수는 ${point.jumsu}점</li>`)
+              .appendTo(list)
+              .css("list-style", "none")
+              .css('color','green')
+            sum += point.jumsu;
+          }
+          $(`<p>점수합계 : ${sum}</p>`).appendTo(paragraph);
+          
+        }
+       scoreOf(ar); // 위 함수를 실행
+      };
+    </script>
+  </head>
+  <body>
+    <ul id="list"></ul>
+    <div id="paragraph"></div>
+  </body>
+</html>
