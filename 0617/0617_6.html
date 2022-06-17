@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css framework -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>날씨앱 step4 - 배열사용for</title>
+    <!-- script start -->
+    <script>
+      // 이벤트 처리 코드는 반드시 $(document)
+      $(document).ready(async function () {
+        // API 는 key 를 발급받아야 사용할 수 있다
+        const key = "5a901afa3c43247852d1979f388b32d7";
+        const citis = [
+          { name: "인천", code: "Incheon" },
+          { name: "서울", code: "Seoul" },
+          { name: "부산", code: "Busan" },
+          { name: "도쿄", code: "Tokyo" },
+          { name: "뉴욕", code: "New York" },
+          { name: "오사카", code: "Osaka" },
+        ]; // 배열사용은 오타를 줄여준다
+        let cno = 0; //
+        let weather = null; // js는 0이든 ''이든 자동변환시켜서 오류가안난다
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${citis[0].code}&appid=${key}&units=metric`;
+
+        //초기화 함수 : 도시 목록을 버튼으로 출력한다
+        // 경계선 //
+        function init() {
+          const $button = $("#buttons");
+          for (let i = 0; i < citis.length; i++) {
+            $('<button class="btn btn-primary"></button>')
+              .attr("data-cno", i)
+              .text(citis[i].name)
+              .appendTo($button);
+          }
+        }
+        init();
+        // 경계선 //
+
+        function printWether() {
+          $("#name").text(weather.name);
+          $("#temp").text(
+            `온도:${weather.main.temp}도/습도:${weather.main.humidity}`
+          );
+          $("#cloud").text(weather.weather[0].description);
+        }
+        // 경계선 //
+
+        $("#buttons button").click(async function () {
+          cno = parseInt($(this).attr("data-cno"));
+          url = `https://api.openweathermap.org/data/2.5/weather?q=${citis[cno].code}&appid=${key}&units=metric`;
+          weather = await $.ajax(url); 
+          printWether();
+        });
+        // 경계선 //
+      }); // < $(document).ready(function(){}) 내부
+    </script>
+    <!-- style start -->
+    <style>
+      body {
+        height: 100vh;
+        background: url("https://t1.daumcdn.net/cfile/tistory/998B224D5DBDB51B0D");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #container {
+        height: 400px;
+      }
+
+      #page {
+        font-family: "Nanum Gothic", sans-serif;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #page h1 {
+        font-size: 52px;
+        font-weight: 700;
+      }
+
+      #page .box {
+        background-color: rgba(240, 247, 255, 0.3);
+        border: 1px solid #fff;
+        border-radius: 15px;
+        width: 380px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: 600;
+        color: #222222;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="page">
+      <h1>Weather</h1>
+      <div class="box">
+        <div id="name"></div>
+        <div id="temp"></div>
+        <div id="cloud"></div>
+      </div>
+      <div id="buttons" class="btn-group"></div>
+    </div>
+  </body>
+</html>
