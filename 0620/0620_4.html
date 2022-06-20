@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>구조분해할당</title>
+  </head>
+  <body>
+    <script>
+      let lat, lon;
+      let weather = null; 
+      const key = "5a901afa3c43247852d1979f388b32d7";
+      async function getPosition() {
+        const geo = `http://api.openweathermap.org/geo/1.0/direct?q=Incheon&limit=5&appid=${key}&units=metric`;
+        const result = await $.ajax(geo);
+        lat = result[0].lat;
+        lon = result[0].lon;
+      }
+
+      function getFormatDate(date) {
+        return `${date.getMonth() + 1}월${date.getDate()}일`;
+      }
+
+      function getFormatTime(time) {
+        return `${time.getHours()}:${time.getMinutes()}`;
+      }
+
+      async function getWeather() {
+        const data = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&limit=5&appid=${key}&units=metric`;
+        const result = await $.ajax(data);
+        const sunrise = new Date(result.current.sunrise * 1000);
+        const sunset = new Date(result.current.sunset * 1000);
+        const temp = result.current.temp
+        const humidity = result.current.humidity
+        weather = {'일출':sunrise,'일몰':sunset,'온도':temp,'습도':humidity} // 사용하려면 변수지정해야한다 const let ...
+        weather = {sunrise,sunset,temp,humidity}; // 구조분해할당 : 이름과 값을 가진 변수가 똑같은 경우 한반만 적는다
+        console.log(weather)
+        console.log(result)
+      }
+      $(document).ready(async function () {
+        await getPosition();
+        await getWeather();
+      });
+    </script>
+  </body>
+</html>

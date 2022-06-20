@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>원하는 정보 출력</title>
+  </head>
+  <body>
+    <script>
+      // 날씨앱을 만들어라
+      // 1. 어떤 내용을 출력 할 것인가? - 오늘날씨, 주간예보, ...
+      // 2. 관련 API 서비스 찾기
+      // - 오늘의 날씨 정보를 읽어와서 consol.log로 출력해서
+      // - object 안에있는 내게 필요한 정보만 찾는다
+      // 3.
+      let lat, lon;
+      const key = "5a901afa3c43247852d1979f388b32d7";
+      async function getPosition() {
+        const geo = `http://api.openweathermap.org/geo/1.0/direct?q=Incheon&limit=5&appid=${key}&units=metric`;
+        const result = await $.ajax(geo);
+        lat = result[0].lat;
+        lon = result[0].lon;
+      }
+
+      function getFormatDate(date) {
+        // 날짜를 '6월 20일'
+        return `${date.getMonth() + 1}월${date.getDate()}일`;
+      }
+
+      function getFormatTime(time) {
+        // 날짜를 '07:20'
+        return `${time.getHours()}:${time.getMinutes()}`;
+      }
+
+      async function getWeather() {
+        const data = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&limit=5&appid=${key}&units=metric`;
+        const result = await $.ajax(data);
+        const sunrise = new Date(result.current.sunrise * 1000);
+        const sunset = new Date(result.current.sunset * 1000);
+        const temp = result.current.temp
+        const humidity = result.current.humidity
+        console.log(result)
+        console.log(sunrise)
+        console.log(sunset)    
+        console.log(temp)
+        console.log(humidity)
+      }
+      $(document).ready(async function () {
+        await getPosition();
+        await getWeather();
+      });
+    </script>
+  </body>
+</html>
