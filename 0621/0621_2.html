@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scope</title>
+    <script>
+      //변수는 {} 소속
+      let data = 10;
+      function es6() {
+        let a = 20;
+        {
+          // b는 초록색 중괄호가 스코프
+          let b = 30;
+          console.log(data, a, b);
+        }
+        console.log(data, a, b);
+      }
+      // es6();
+
+      // es5에서는 함수만이 스코프를 생성한다
+      function es5() {
+        let a = 20;
+        {
+          // b는 초록색 중괄호가 스코프
+          let b = 30;
+          console.log(data, a, b);
+        }
+        console.log(data, a, b);
+      }
+      es5();
+    </script>
+  </head>
+  <body></body>
+</html>

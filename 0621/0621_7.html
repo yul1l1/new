@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>중요사항 / 게시판 만들기 </title>
+    <script>
+      "use strict";
+      async function getApiData() {
+        const adress =
+          "http://sample.bmaster.kro.kr/contacts?pageno=1&pagesize=4";
+        return await $.ajax(adress);
+      }
+      function printApiData({ contacts }) {
+        const $tbody = $("#list");
+        // $tbody.empty(); 출력 무한 막기
+        for (const print of contacts) {
+          const $tr = $("<tr>").appendTo($tbody);
+            $("<td>").text(print.no).appendTo($tr);
+            $("<td>").text(print.name).appendTo($tr);
+            $("<td>").text(print.address).appendTo($tr);
+            $("<td>").text(print.tel).appendTo($tr);
+        }}
+      $(document).ready(async function () {
+        const data = await getApiData();
+        printApiData(data);
+       
+        $('#print').click(function(){
+          printApiData(data);
+        })
+        // 이벤트 이름 함수는 정적인 요소의 이벤트만 처리가능 
+        $('td').click(function(){alert('hi')})
+        // 동적으로 추가된 요소의 이벤트를 처리하려면
+        // $(넓은 선택자).on('이벤트이름',선택자,함수)
+        $('#list').on('click','td',function(){
+          alert('hi')
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 버튼을 클릭하면 data를 출력 -->
+    <button id="print">출력</button>
+    <table>
+      <tbody id="list"></tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title></title>
+    <script>
+      "use strict";
+
+      function getApiData() {
+       const result = [{no:1, name:'aaa'},{no:2, name:'vvv'}]
+       return result
+      }
+      function printApiData(data) {
+        const $tbody = $('#list')
+        for(const d of data){
+          // const 자식 = 자식.appendTo(부모)
+          const $tr = $('<tr>').appendTo($tbody)
+          $('<td>').text(d.no).appendTo($tr)
+          $('<td>').text(d.name).appendTo($tr)  
+        }
+      }
+      
+      // 이벤트 핸들러(event handler)
+      $(document).ready(function () {
+        let data = getApiData();
+        console.log(data)
+        printApiData(data) 
+      });
+    </script>
+  </head>
+  <body>
+    <table>
+      <tbody id="list">
+        
+      </tbody>
+    </table>
+  </body>
+</html>

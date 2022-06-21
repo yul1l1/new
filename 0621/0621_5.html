@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>게시판 만들기 기본</title>
+    <script>
+      "use strict";
+      async function getApiData() {
+        const adress =
+          "http://sample.bmaster.kro.kr/contacts?pageno=1&pagesize=4";
+        // 비동기 작업 - 병렬도 동시에 실행되는 작업들 >
+        return await $.ajax(adress);
+
+        // 구조분해 할당
+        // 변수를 모아 객체를 또는  객체를 변수로 분해
+        // const no=1. name ='홍길동'
+        // const obj = {no, name}; // {"no":no, "name": name}
+
+        // const {no, name} = obj
+      }
+      function printApiData({contacts}) {
+        const $tbody = $("#list");
+        for (const print of contacts) {
+          const $tr = $("<tr>").appendTo($tbody);
+          $("<td>").text(print.no).appendTo($tr);
+          $("<td>").text(print.name).appendTo($tr);
+          $("<td>").text(print.address).appendTo($tr);
+          $("<td>").text(print.tel).appendTo($tr);
+        } console.log(contacts);
+      }
+
+      $(document).ready(async function () {
+        let data = await getApiData(); // 비동기 작업은 전염되기에 연결된 함수도 await로 비동기로 바꿔야한다
+        // data : pageno, pagesize, totalcount, contacts
+        printApiData(data);
+        console.log(data);
+      });
+    </script>
+  </head>
+  <body>
+    <table>
+      <tbody id="list"></tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>출력</title>
+  </head>
+  <body>
+    <script>
+      async function getGeo(key, geoUrl, city, limit) {
+        const result = await $.ajax({
+          url: geoUrl,
+          data: { q: city, limit: limit, appid: key },
+          meThod: "get",
+          processData: true,
+        });
+        return { 위도: result[0].lat, 경도: result[0].lon };
+      }
+
+      async function getWeather(position, key, weatherUrl) {
+        const { 위도, 경도 } = position;
+        return await $.ajax({
+          url: weatherUrl,
+          method: "get",
+          processData: true,
+          data: { lat: 위도, lon: 경도, appid: key },
+        });
+      }
+
+      async function getAir({ 위도, 경도 }, key, airUrl) {
+        return await $.ajax({
+          url: airUrl,
+          method: "get",
+          processData: true,
+          data: { lat: 위도, lon: 경도, appid: key },
+        });
+      }
+      $(document).ready(async function () {
+        const key = "5a901afa3c43247852d1979f388b32d7";
+        const geoUrl = "http://api.openweathermap.org/geo/1.0/direct";
+        const airUrl = "http://api.openweathermap.org/data/2.5/air_pollution";
+        const weatherUrl = "https://api.openweathermap.org/data/2.5/onecall";
+        const city = "Incheon";
+        const limit = 1;
+        const position = await getGeo("5a901afa3c43247852d1979f388b32d7", geoUrl, city, limit);
+        const weather = await getWeather(position, key, weatherUrl) 
+        const air = await getWeather(position, key, airUrl) 
+        console.log(weather);
+        console.log(air)
+        console.log(position);
+        // daily : 주간예보 daily[0]~daily[7].daily[0]은 오늘
+        // 시간 > 출력이 대단히 복잡하다
+        //      > 1970 1월 1일 이후 흘러간 밀리초 > UTC
+        // 우리가 사용하느 api의 시간은 밀리초가 아니라 초 단위 : *1000이 필요하다
+        const date = new Date(weather.daily[0].sunrise*1000)
+        console.log(`${date.getMonth()+1}월 ${date.getDate()} 일${date.getHours()}시 ${date.getMinutes()}분`) //월은 +1 을 해줘야한다
+      });
+    </script>
+  </body>
+</html>

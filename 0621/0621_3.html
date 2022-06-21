@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scope "use strict"</title>
+    <script>
+      "use strict" // 변수 선언을 안해주면 오류가 나게하는 코드
+      // 매개변수 : 함수의 입력, 아래 b와 같은 값
+      function scope(b) {
+        if (b > 5) {
+          c = 10;
+          // let, var 없이 변수를 만들면 오류가 아니라 전역(ES5)
+          // 키워드를 사용하지 않으면 전역 -> ES6는 "user strict"
+        }
+      }
+
+      scope(10)
+      console.log(c)
+    </script>
+  </head>
+  <body></body>
+</html>

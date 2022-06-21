@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>중요사항 / 게시판 만들기 클릭걸기</title>
+    <script>
+      "use strict";
+      async function getApiData() {
+        const adress =
+          "http://sample.bmaster.kro.kr/contacts?pageno=1&pagesize=4";
+        return await $.ajax(adress);
+      }
+      function printApiData({ contacts }) {
+        const $tbody = $("#list");
+        // empty는 자식을 지운다, remove는 자신을 지운다
+        $tbody.empty(); // 없으면 무한출력
+        for (const print of contacts) {
+          const $tr = $("<tr>").appendTo($tbody);
+            $("<td>").text(print.no).appendTo($tr);
+            $("<td>").text(print.name).appendTo($tr);
+            $("<td>").text(print.address).appendTo($tr);
+            $("<td>").text(print.tel).appendTo($tr);
+        }
+      }
+
+      $(document).ready(async function () {
+        // data : pageno, pagesize, totalcount, contacts
+        let data = await getApiData();
+
+        // 이벤트 핸들러는 ready 내부에 작성해야 한다
+        // 매개변수가 없으면 아래 처럼 작성하면된다
+        // $('#print').click(printApiData()); 는 바로 실해되버리게된다
+        $('#print').click(function(){
+          printApiData(data);
+        })
+        console.log(data);
+      });
+    </script>
+  </head>
+  <body>
+    <button id="print">출력</button>
+    <table>
+      <tbody id="list"></tbody>
+    </table>
+  </body>
+</html>
