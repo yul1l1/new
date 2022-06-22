@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>weather app</title>
+    <script>
+      // 위치정보 가져오기
+      async function getGeo(geoUrl, cities, limit, key) {
+        return await $.ajax({
+          url: geoUrl,
+          data: { q: cities[0].code, limit: limit, appid: key },
+          method: "get",
+          processData: true,
+        });
+      }
+      // 날씨정보 가져오기
+      async function getWeather(weatherUrl, geo, key) {
+        return await $.ajax({
+          url: weatherUrl,
+          data: { lat: geo[0].lat, lon: geo[0].lon, appid: key },
+          method: "get",
+          processData: true,
+        });
+      }
+      // 미세먼지 정보 가져오기
+      async function getAir(airUrl, geo, key) {
+        return await $.ajax({
+          url: airUrl,
+          data: { lat: geo[0].lat, lon: geo[0].lon, appid: key },
+          method : 'get',
+          processData : true
+        });
+      }
+      // 출력 함수
+      function printWeather(){
+       
+      }
+
+      $(document).ready(async function () {
+        const key = "5a901afa3c43247852d1979f388b32d7";
+        const geoUrl = "http://api.openweathermap.org/geo/1.0/direct";
+        const weatherUrl = "https://api.openweathermap.org/data/2.5/onecall"; // l?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+        const airUrl = "http://api.openweathermap.org/data/2.5/air_pollution"; // ?lat={lat}&lon={lon}&appid={API key}
+        const cities = [
+          { name: "인천", code: "Incheon" },
+          { name: "서울", code: "Seoul" },
+          { name: "부산", code: "Busan" },
+          { name: "도쿄", code: "Tokyo" },
+          { name: "뉴욕", code: "New York" }
+        ];
+        const limit = 5;
+        const geo = await getGeo(geoUrl, cities, limit, key);
+        const weather = await getWeather(weatherUrl, geo, key);
+        const air = await getAir(airUrl, geo, key);
+        const print = printWeather(weather, air)
+        console.log(geo);
+        console.log(weather);
+        console.log(air)
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

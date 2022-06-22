@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>여러 요소에 대한 이벤트 핸들러</title>
+    <script>
+      $(document).ready(function () {
+        $("button").click(function () {
+         const $op = $(this).attr('data-op');
+         if($op==='+'){
+          const $span = $(this).next().next().next()
+          let value = parseInt($span.text())
+          $span.text(++value)
+         } else {
+          const $span = $(this).next()
+          let value = parseInt($span.text())
+          $span.text(--value)
+          }
+        });
+      });
+      // prev(), next()
+    </script>
+  </head>
+  <body>
+    <div>
+      <button data-op="+" data-name="돼지고기">+</button><span>돼지고기</span>
+      <button data-op="-" data-name="돼지고기">-</button><span>1</span>
+    </div>
+    <div>
+      <button data-op="+" data-name="콜라">+</button><span>콜라</span>
+      <button data-op="-" data-name="콜라">-</button><span>1</span>
+    </div>
+    <div>
+      <button data-op="+" data-name="상추">+</button><span>상추</span>
+      <button data-op="-" data-name="상추">-</button><span>1</span>
+    </div>
+  </body>
+</html>

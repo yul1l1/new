@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>화살표 함수</title>
+    <script>
+      // 화살표 함수 (arrow function. 자바에서는 람다식)
+      // 함수를 간단히 표현하는 것이다 -> 왜 쓴다??
+      function sum1(a, b) {
+        return a + b;
+      }
+      // 화살표 함수
+      const sum2 = (a, b) => {
+        return a + b;
+      };
+
+      const sum3 = (a, b) => a + b;
+      console.log(sum3(2, 3));
+
+      function power(a) {
+        return a * a;
+      }
+      // 화살표 함수
+      const power2 = (a) => a * a;
+
+      $("#btn").click(function () {
+        alert("hi");
+      });
+      // 화살표 함수
+      $("#btn").click(() => alert("hi"));
+
+      const url = "";
+      $.ajax(url)
+        .done(function () {}) // 성공시
+        .fail(function () {}); // 실패시
+
+      // 화살표 함수
+      $.ajax(url)
+        .done(() => {})
+        .fail(() => {});
+    </script>
+  </head>
+  <body>
+    <button id="btn">click</button>
+  </body>
+</html>

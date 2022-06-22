@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>this</title>
+    <script>
+      // this
+
+      function aaa() {
+        // 함수에서는 window 객체다
+        console.log(this);
+      }
+
+      function bbb() {
+        console.log("1" + this);
+        const param = {
+          pageno: 1
+        };
+
+        // 전통적 $.ajax
+        $.ajax({
+          url: "http://sample.bmaster.kro.kr/contacts",
+          data: param,
+          success: function (result) {
+            console.log("2" + this);
+          },
+        });
+      }
+      // 위 $.ajax의 개량 -> await (ES2018쯤 추가)
+      $.ajax("http://sample.bmaster.kro.kr/contacts").done(function(result){ 
+        console.log("3" + this) // 통신의 this는 서버의 응답
+      })
+      // js의 함수의 this는 window다
+      // 그런데 일반함수의 this는 동적이다(상황에 따라 바뀔 수 있다)
+      // 일반함수를 단독으로 사용하면 window, 메소드로 사용하면 객체.
+      // "이벤트 핸들러로 사용하면 이벤트가 발생한 곳"
+      // 화살표 함수의 this는 정적이다
+      aaa();
+      bbb();
+      // https://www.zerocho.com/category/JavaScript/post/5b0645cc7e3e36001bf676eb //자바스크립트의 this
+      // 클로저, 스코프체인
+      
+    </script>
+  </head>
+  <body></body>
+</html>

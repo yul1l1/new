@@ -50,7 +50,7 @@
           $("#cloud").text(weather.weather[0].description);
         }
         console.log(input);
-        
+        console.log(cno)
           
         $("#buttons button").click(async function () {
           cno = parseInt($(this).attr("data-cno"));
@@ -123,6 +123,7 @@
         <div id="name"></div>
         <div id="temp"></div>
         <div id="cloud"></div>
+        <div></div>
       </div>
       <div id="buttons"></div>
     </div>

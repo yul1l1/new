@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>화살표 함수 차이점</title>
+    <script>
+      // 일반함수와 화살표함수의 차이점
+      const obj = {
+        irum: "홍길동",
+        kor: 80,
+        eng: 90,
+        tot: 0,
+        print: function () {
+          console.log(this.irum);
+        },
+        setTot: function () {
+          this.tot = this.kor + this.eng;
+        },
+      };
+
+      // ES6 메소드 작성법
+      const obj2 = {
+        irum:'ghftlf',
+        kor: 20,
+        eng:89,
+        tot:0,
+        print() {
+          console.log(this.irum);
+        },
+        setTot() {
+          this.tot = this.kor + this.eng;
+        }
+
+      }
+
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>화살표 함수 차이점</title>
+    <script>
+      console.log(this); // 전역 this는 window 객체
+
+      //함수와 화살표 함수는 this가 다르다
+      const obj1= {
+        printThis() {
+          // 메소드의 this는 소속된 객체를 가리켜야 한다
+          // 일반 함수의 this는 소속된 객체
+          console.log(this);
+        },
+      };
+
+      const obj2 = {
+        // 화살표 함수의 this는 window다
+        // 화살표함수로는 메소드를 만들 수 없다
+        printThis: () => {
+          console.log(this);
+        },
+      };
+
+      console.log(obj1.printThis());
+      console.log(obj2.printThis());
+    </script>
+  </head>
+  <body></body>
+</html>

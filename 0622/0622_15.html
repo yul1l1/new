@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>배열</title>
+    <script>
+      // Model : 데이터
+      const citis = [
+        { name: "인천", code: "Incheon" },
+        { name: "서울", code: "Seoul" },
+        { name: "부산", code: "Busan" },
+      ];
+      // View : 데이터를 출력
+      function addCities() {
+        const $target = $("#target");
+        citis.forEach((city, i) => {
+          $("<button>").text(city.name).attr("data-cno", i).appendTo($target);
+        });
+      } 
+      
+      $(document).ready(function () {// 여기까지 정적
+        addCities();
+        $('#btn').click(function(){
+          addCities();
+        })
+        // 동적요소들은 처리 되지 않는다. document.ready 까지는 정적 
+        $('button').click(function(){
+          alert('hi');
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <button id="btn">추가</button>
+    <div id="target"></div>
+  </body>
+</html>
