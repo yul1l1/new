@@ -7,59 +7,142 @@
     <title>weather app</title>
     <script>
       // 위치정보 가져오기
-      async function getGeo(geoUrl, cities, limit, key) {
+      async function getGeo(geoUrl, cities, limit, key, cno) {
         return await $.ajax({
           url: geoUrl,
-          data: { q: cities[0].code, limit: limit, appid: key },
+          data: { q: cities[cno].code, limit: limit, appid: key },
           method: "get",
           processData: true,
         });
       }
       // 날씨정보 가져오기
-      async function getWeather(weatherUrl, geo, key) {
+      async function getWeather(weatherUrl, geo, key, units, cno) {
         return await $.ajax({
           url: weatherUrl,
-          data: { lat: geo[0].lat, lon: geo[0].lon, appid: key },
+          data: {
+            lat: geo[cno].lat,
+            lon: geo[cno].lon,
+            appid: key,
+            units: units,
+          },
           method: "get",
           processData: true,
         });
       }
       // 미세먼지 정보 가져오기
-      async function getAir(airUrl, geo, key) {
+      async function getAir(airUrl, geo, key, units) {
         return await $.ajax({
           url: airUrl,
           data: { lat: geo[0].lat, lon: geo[0].lon, appid: key },
-          method : 'get',
-          processData : true
+          method: "get",
+          processData: true,
         });
       }
       // 출력 함수
-      function printWeather(){
-       
+      function weatherData(weather, air, rise, set) {
+        const temp = weather.current.temp;
+        const tempMax = weather.daily[0].temp.max;
+        const tempMin = weather.daily[0].temp.min;
+        const lat = weather.lat;
+        const lon = weather.lon;
+        const feelsLike = weather.current.feels_like;
+        const humidity = weather.current.humidity;
+        const rise = getSunrise(new Date(weather.current.sunrise * 1000));
+        const set = getSunset(new Date(weather.current.sunset * 1000));
+        const pm10 = air.list[0].components.pm10;
+        const pm2_5 = air.list[0].components.pm2_5;
+        const uvi = weather.current.uvi;
+        const cloud = weather.daily[0].weather[0].main;
+
+        return {
+          lat,
+          lon,
+          temp,
+          feelsLike,
+          tempMax,
+          tempMin,
+          humidity,
+          rise,
+          set,
+          pm10,
+          pm2_5,
+          uvi,
+          cloud,
+        };
+      }
+     const getSunrise = (data) => {
+        return `${data.rise.getHours()}시 ${data.rise.getMinutes()}분`;
+      }
+      const getSunset = (data) => {
+        return `${data.set.getHours()}시 ${data.set.getMinutes()}분`;
       }
 
+      function printWeather(data) {
+        const $contents = $("#contents");
+        $(`<div id='lat'>위도 ${data.lat}</div>`).appendTo($contents);
+        $(`<div id='lon'>경도 ${data.lon}</div>`).appendTo($contents);
+        $(`<div id='temp'>기온 ${data.temp}</div>`).appendTo($contents);
+        $(`<div id='tempMax'>최고기온 ${data.tempMax}</div>`).appendTo(
+          $contents
+        );
+        $(`<div id='tmepMin'>최저기온 ${data.tempMin}</div>`).appendTo(
+          $contents
+        );
+        $(`<div id='feelTemp'>체감온도 ${data.feelsLike}</div>`).appendTo(
+          $contents
+        );
+        $(`<div id='humidity'>습도 ${data.humidity}</div>`).appendTo($contents);
+        $(`<div id='sunrise'>일출 ${data.rise} </div>`).appendTo($contents);
+      }
+
+      function init(){
+        const init = (cities) => {
+          city
+        }  
+      }
       $(document).ready(async function () {
         const key = "5a901afa3c43247852d1979f388b32d7";
         const geoUrl = "http://api.openweathermap.org/geo/1.0/direct";
-        const weatherUrl = "https://api.openweathermap.org/data/2.5/onecall"; // l?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-        const airUrl = "http://api.openweathermap.org/data/2.5/air_pollution"; // ?lat={lat}&lon={lon}&appid={API key}
+        const weatherUrl = "https://api.openweathermap.org/data/2.5/onecall";
+        const airUrl = "http://api.openweathermap.org/data/2.5/air_pollution";
         const cities = [
           { name: "인천", code: "Incheon" },
           { name: "서울", code: "Seoul" },
           { name: "부산", code: "Busan" },
           { name: "도쿄", code: "Tokyo" },
-          { name: "뉴욕", code: "New York" }
+          { name: "뉴욕", code: "New York" },
         ];
+        let cno = 0;
+        const units = "metric";
         const limit = 5;
-        const geo = await getGeo(geoUrl, cities, limit, key);
-        const weather = await getWeather(weatherUrl, geo, key);
-        const air = await getAir(airUrl, geo, key);
-        const print = printWeather(weather, air)
+        const geo = await getGeo(geoUrl, cities, limit, key, cno);
+        const weather = await getWeather(weatherUrl, geo, key, units, cno);
+        const air = await getAir(airUrl, geo, key, units, cno);
+        const data = weatherData(weather, air);
+        const print = printWeather(data);
+        const sunrise = getSunrise(data);
+        const sunset = getSunset(data)
         console.log(geo);
         console.log(weather);
-        console.log(air)
+        console.log(data);
+        console.log(print);
+        console.log(sunrise);
+        console.log(sunset)
       });
     </script>
+    <style>
+      #contents {
+        font-size: 20px;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div id="page">
+      <div>
+        <h1>Weather App</h1>
+      </div>
+      <div id="buttons"></div>
+      <div id="contents"></div>
+    </div>
+  </body>
 </html>

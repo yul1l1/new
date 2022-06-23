@@ -16,45 +16,49 @@
     />
     <title>날씨앱 다시제작</title>
     <script>
+      const key = "5a901afa3c43247852d1979f388b32d7";
+      const input = [
+        // 객체 배열
+        { name: "인천", code: "Incheon" },
+        { name: "서울", code: "Seoul" },
+        { name: "부산", code: "Busan" },
+        { name: "도쿄", code: "Tokyo" },
+        { name: "뉴욕", code: "New York" },
+      ];
+      weather = {}
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${input[0].code}&appid=${key}&units=metric`;
+      let cno = 0;
+      $("#buttons button").click(async function () {
+        cno = parseInt($(this).attr("data-cno"));
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${input[cno].code}&appid=${key}&units=metric`;
+        weather = await $.ajax(url);
+      });
+      function buttonOf() {
+        // 함수 명 설정
+        const $buttons = $("#buttons"); // 적용대상 html
+        for (let i = 0; i < input.length; i++) {
+          // 반복문으로 배열 가져오기
+          $('<button class="btn btn-primary"></button>')
+            .attr("data-cno", i) // 속성
+            .appendTo($buttons) // 자식에게 지정
+            .text(input[i].name);
+        }
+      }
+      buttonOf();
+      function printWether() {
+        $("#name").text(weather.name);
+        $("#temp").text(
+          `온도:${weather.main.temp}도/습도:${weather.main.humidity}`
+        );
+        $("#cloud").text(weather.weather[0].description);
+        $("#lat").text(weather.main.temp);
+        $("#lon").text(weather.main.temp);
+      }
+
       $(document).ready(function () {
         // jQuery의 onload
-        const key = "5a901afa3c43247852d1979f388b32d7";
-        const input = [
-          // 객체 배열
-          { name: "인천", code: "Incheon" },
-          { name: "서울", code: "Seoul" },
-          { name: "부산", code: "Busan" },
-          { name: "도쿄", code: "Tokyo" },
-          { name: "뉴욕", code: "New York" }
-        ];
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${input[0].code}&appid=${key}&units=metric`;
-        let cno = 0;
 
-        function buttonOf() {
-          // 함수 명 설정
-          const $buttons = $("#buttons"); // 적용대상 html
-          for (let i = 0; i < input.length; i++) {
-            // 반복문으로 배열 가져오기
-            $('<button class="btn btn-primary"></button>')
-              .attr("data-cno", i) // 속성
-              .appendTo($buttons) // 자식에게 지정
-              .text(input[i].name);
-          }
-        }
-        buttonOf();
-        function printWether() {
-          $("#name").text(weather.name);
-          $("#temp").text(`온도:${weather.main.temp}도/습도:${weather.main.humidity}`);
-          $("#cloud").text(weather.weather[0].description);
-        }
-          
-                 
-        $("#buttons button").click(async function () {
-          cno = parseInt($(this).attr("data-cno"));
-          url = `https://api.openweathermap.org/data/2.5/weather?q=${input[cno].code}&appid=${key}&units=metric`;
-          weather = await $.ajax(url);
-          printWether();
-        });
+        printWether();
       });
     </script>
     <style>
@@ -118,9 +122,12 @@
       <h1>Weather</h1>
       <div id="contents">
         <div id="name"></div>
+        <div id="lat"></div>
+        <div id="lon"></div>
+        <div id="tempMax"></div>
+        <div id="tempMin"></div>
         <div id="temp"></div>
         <div id="cloud"></div>
-        <div></div>
       </div>
       <div id="buttons"></div>
     </div>
