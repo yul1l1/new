@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>연습</title>
+    <style>
+      body{
+        height: 100vh;
+        background-color: #ddd;
+      }
+      #app {
+        border: 1px solid rgb(118, 168, 0);
+        width: 480px;
+        margin: 0 auto;
+      }
+      #input {
+        width: 400px;
+        height: 18px;
+        border-radius: 0;
+        padding: 0;
+      }
+      #add {
+        width: 70px;
+        padding: 0;
+      }
+      .title {
+        width: 400px;
+        display: inline-block;
+      }
+      li {
+        list-style: decimal;
+      }
+    </style>
+    <script>
+      // keyup(키보드 누를때) , splice(배열 요소 삭제), keyCode === 13(엔터), push(배열 추가) .배열의 메소드
+      const printTodo = (todo) => {
+        const $ul = $("#content");
+        todo.forEach((todo, index) => {
+          const $li = $("<li>")
+            .attr("data-todo", "todo")
+            .attr("data-index", index)
+            .appendTo($ul);
+          if (todo.done === true) {
+            $('<span class="title">')
+              .addClass("done")
+              .text(todo.title + "(완료)")
+              .appendTo($li);
+          } else {
+            $('<span class="title">').text(todo.title).appendTo($li);
+          }
+          $("<span>").attr("class", "close").text("X").appendTo($li);
+        });
+      };
+      $(document).ready(() => {
+        const todo = [
+          { title: "집에 가기", done: false },
+          { title: "에 가기집", done: false },
+          { title: "가기 집에", done: false },
+          { title: "기 집에가", done: false },
+        ];
+        printTodo(todo);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" id="input" />
+      <button id="add">추가</button>
+      <ul id="content"></ul>
+    </div>
+  </body>
+</html>

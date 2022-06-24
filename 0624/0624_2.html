@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>7. 완료</title>
+    <style>
+      body {
+        height: 100vh;
+        background-color: #ddd;
+      }
+
+      #app {
+        width: 600px;
+        margin: 0 auto;
+        background-color: #eee;
+        border: 1px solid darkblue;
+      }
+
+      #input {
+        width: 530px;
+      }
+
+      li {
+        list-style: none;
+      }
+      .title {
+        display: inline-block;
+        width: 400px;
+      }
+
+      .done {
+        color: rgb(219, 53, 53);
+        text-decoration: line-through;
+      }
+    </style>
+    <script>
+      // 새로 추가되는 함수
+      const addTodo = (todo) => {
+        // 화살표 함수에 ready안에있는 변수값을 가져옴
+        todo.push({ title: $("#input").val(), done: false }); // 배열 메소드 push로 새 내용(input)과 배열 추가
+        // 배열의 끝에 하나 이상의 요소를 추가하고, 배열의 새로운 길이를 반환합니다.
+        printTodolist(todo);
+      };
+
+      // 메인 출력 함수
+      const printTodolist = (todo) => {
+        // 화살표 함수에 ready안에있는 변수값을 가져옴
+        const $ul = $("#todos"); // 태그에 준 이름으로 대상을 변수로 생성
+        $ul.empty();
+        // 무한 생성 방지
+        todo.forEach((todo, index) => {
+          // forEach로 가져온 변수값의 내용과 배열넘버를 생성
+          const $li = $("<li>") // 자식으로 들어갈 태그
+            .attr("class", todo) // class 속성을 주고 값으로 todo를 준다
+            .attr("data-index", index) // data-index 의 값으로 index(todo의 배열순서)
+            .appendTo($ul); // 지정대상의 자식에 해당하는 위치에 생성
+          if (todo.done === true) {
+            //todo.done의 값과 타입이 true 일때
+            $("<span>") // close(x) 와 내용의 거리를 벌려주기위한 클래스
+              .text(todo.title + " (완료)") // todo의 타이틀 + (완료)를 출력
+              .attr("class", "title done") // class에 done을 추가 결과적으로 class = 'title done'
+              .attr("data-index", index) // data-index 의 값으로 index(todo의 배열순서)
+              .appendTo($li); // 지정대상의 자식에 해당하는 위치에 생성
+          } else {
+            $("<span>")
+              .text(todo.title)
+              .attr("class", "title")
+              .attr("data-index", index)
+              .appendTo($li);
+          }
+          // close(x) 를 생성
+          $("<span>")
+            .attr("class", "close")
+            .text("X")
+            .attr("data-index", index)
+            .appendTo($li);
+        });
+      };
+      // 이 위까지가 정적작업의 끝 / 항상 동적인 작업과 정적인 작업이 무엇일지 고민하고 위치 선정
+      // 이 아래부터는 동적작업의 시작
+      // CROD - 작성 읽기 업데이트 삭제
+      $(document).ready(() => {
+        // road 이벤트 시작(웹브라우저가 로딩되고 부터 시작)
+        const todos = [
+          // 변수 배열 생성
+          { title: "영화 보기", done: false },
+          { title: "주말 산책", done: false },
+          { title: "ES6 학습", done: false },
+          { title: "잠실 야구장", done: false },
+        ];
+        printTodolist(todos);
+
+        $("#add").click(function () {
+          // input과 button 에 작동하는 함수
+          // 누를 버튼에 클릭 이벤트를 건다
+          addTodo(todos); // 클릭을 했을 때 동작할 함수를 연결
+        });
+
+        $("#input").keyup(function (event) {
+          // 키보드를 입력하는 이벤트
+          // input과 button 에 작동하는 함수
+          if (event.keyCode === 13)
+            // keybor에는 keycode가 있는데 이중 enter의 code는 13이다
+            // keycode 13 엔터에 작동하게된다.
+            // 없으면 input에 입력하기만해도 입력값이 넘어간다
+            addTodo(todos);
+        });
+        // $(this)는 이벤트가 발생하는 곳
+        $("#todos").on("click", ".title", function () {
+          // title class를 가진 text를 누르면 작동하는 함수
+          todos[$(this).attr("data-index")].done = // done이 true 일때나 false 일때 둘다 작동한다
+            !todos[$(this).attr("data-index")].done;
+          console.log(!todos[$(this).attr("data-index")].done); //
+          printTodolist(todos);
+        });
+        // $(this)는 이벤트가 발생하는 곳
+        $("#todos").on("click", ".close", function () {
+          // 배열의 삭제를 하는 함수
+          todos.splice($(this).attr("data-index"), 1); // data 값으로 1을 주지않으면 추가한 내용이 전부 삭제된다
+          //배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경합니다.
+          printTodolist(todos);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" id="input" placeholder="입력 후 엔터!" />
+      <button id="add">추가</button>
+      <ul id="todos">
+        <li class="todo" data-index="index">
+          <span class="title done" data-index="index">주말 산책 (완료)</span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

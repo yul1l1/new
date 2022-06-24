@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>7. 완료</title>
+    <style>
+      body {
+        height: 100vh;
+        background-color: #ddd;
+      }
+
+      #app {
+        width: 600px;
+        margin: 0 auto;
+        background-color: #eee;
+        border: 1px solid darkblue;
+      }
+
+      #input {
+        width: 530px;
+      }
+
+      li {
+        list-style: none;
+      }
+      .title {
+        display: inline-block;
+        width: 400px;
+      }
+
+      .done {
+        color: rgb(219, 53, 53);
+        text-decoration: line-through;
+      }
+    </style>
+    <script>
+      const addTodo = (todo) => {
+        todo.push({ title: $("#input").val(), done: false });
+        printTodolist(todo);
+      };
+      const printTodolist = (todo) => {
+        const $ul = $("#todos");
+        $ul.empty();
+        todo.forEach((todo, index) => {
+          const $li = $("<li>") 
+            .attr("class", todo)
+            .attr("data-index", index)
+            .appendTo($ul);
+          if (todo.done === true) {
+            $("<span>")
+              .text(todo.title + " (완료)")
+              .attr("class", "title done")
+              .attr("data-index", index)
+              .appendTo($li);
+          } else {
+            $("<span>")
+              .text(todo.title)
+              .attr("class", "title")
+              .attr("data-index", index)
+              .appendTo($li);
+          }
+          $("<span>")
+            .attr("class", "close")
+            .text("X")
+            .attr("data-index", index)
+            .appendTo($li);
+        });
+      };
+      $(document).ready(() => {
+        const todos = [
+          { title: "영화 보기", done: false },
+          { title: "주말 산책", done: false },
+          { title: "ES6 학습", done: false },
+          { title: "잠실 야구장", done: false },
+        ];
+        printTodolist(todos);
+
+        $("#add").click(function () {
+          addTodo(todos);
+        });
+
+        $("#input").keyup(function (event) {
+          if (event.keyCode === 13)
+            addTodo(todos);
+        });
+        $("#todos").on("click", ".title", function () {
+          todos[$(this).attr("data-index")].done = 
+            !todos[$(this).attr("data-index")].done;
+          console.log(!todos[$(this).attr("data-index")].done); 
+          printTodolist(todos);
+        });
+        $("#todos").on("click", ".close", function () {
+          todos.splice($(this).attr("data-index"), 1);
+          printTodolist(todos);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" id="input" placeholder="입력 후 엔터!" />
+      <button id="add">추가</button>
+      <ul id="todos">
+        <li class="todo" data-index="index">
+          <span class="title done" data-index="index">주말 산책 (완료)</span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
