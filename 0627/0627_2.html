@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <title>http method</title>
+</head>
+
+<body>
+    <!-- sample.bmaster.kro.kr -->
+    <!-- 프론트가 백과 통신하는 방법
+         - 화면이 이동해서 데이터와 화면을 새로 받아온다 : MVC - form submit
+         - 현재 화면애서 데이터만 방식 : REST - ajax 
+
+         폼을 서버로 넘기는 방식
+         - get : urlencoded 된 파라미터가 주소창에 나타난다(querystring)
+                 서버의 상태를 변경하지 않는다(read) -> 재실행해도 된다 -> 즐겨찾기가 가능하다
+         - post : urlencoded 된 파마미터가 감춰진다(create update delete)
+                  서버의 상태를 변경한다 -> 재실행 불가능
+        -->           
+<form action="#" method="get">
+    <input type="text" id="name" name="name">
+    <button>보내기</button>
+</form>
+</body>
+</html>

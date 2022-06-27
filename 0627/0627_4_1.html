@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>페이지 넘버만들기</title>
+    <script>
+      /* 
+      no   prev  start end    next
+      1    0     1     10     11
+      2    0     1     10     11
+      3    0     1     10     11
+      4    0     1     10     11
+      5    0     1     10     11
+      6    0     1     10     11
+      7    0     1     10     11
+      8    0     1     10     11
+      9    0     1     10     11
+      10   9     10    20(14) 21(0) 
+      11   9     10    20(14) 21(0)      
+      12   9     10    20(14) 21(0) 
+      13   9     10    20(14) 21(0) 
+      14   9     10    20(14) 21(0) 
+      */
+        let pageno = 1,
+          pagesize = 10,
+          totalcount = 340,
+          blocksize = 10;
+        let countOfPage = Math.ceil(totalcount / pagesize); // 페이지 넘버를 확인
+        for (pageno = 1; pageno <= countOfPage; pageno++) { //
+          let prev = Math.floor(pageno / blocksize) * blocksize;
+          let start = prev+1;
+          let end = prev + blocksize
+          let next = end +1
+          if(end>=countOfPage){  
+            end = countOfPage
+            next = 0
+          }
+          console.log(`${pageno}: ${prev} ${start} ${end} ${next}`)
+        }
+      
+    </script>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
