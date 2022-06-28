@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>게시판 로드맵</title>
+    <script>
+      // 1. list.html?pageno= 에서 pageno를 추출(location.search)
+      // 2. 만약 없다면 pageno에 1을 주자
+      // 3. pageno 와 pagesize(10)로  api 서버에 요청을 보내자
+      // 4. 응답의 contacts를 가지고 #list에 번호,이름,주소,연락처 출력
+      // 5. 이름에 read.html로 가는 링크를 건다
+      // 6. pageno, pagesize, totalcount,로 prev, start, end, next를 계산
+      // 7. 계산한 정보로 pagination을 출력
+      // 8. pagination을 가운데 정렬
+      const getPageno = () => {
+        // 방법1
+        const str = location.search.substr(8);
+        console.log(str);
+        const pageno = parseInt(str);
+        if (isNaN(pageno === true)) return 1;
+        return pageno;
+        // 방법2
+        //  const parmas = new URLSearchParams(location.search)
+        //  let p = parmas.get('pageno')===null? 1 : parmas.get('pageno')
+      };
+      const getResponse = async (pageno, pagesize = 10) => {
+        const url = "http://sample.bmaster.kro.kr/contacts";
+        const parmas = { pageno, pagesize };
+        return await $.ajax({
+          url: url,
+          data: parmas,
+          method: "get",
+          processData: true,
+        });
+      };
+      const printContacts = (contacts) => {
+        contacts.forEach((c, index) => {
+          const $list = $("#list");
+          const $tr = $("<tr>").appendTo($list);
+          $("<td>").text(c.no).appendTo($tr);
+          const $td = $("<td>").appendTo($tr);
+          $("<a>").attr("href", "read.html?").text(c.name).appendTo($td);
+          $("<td>").text(c.address).appendTo($tr);
+          $("<td>").text(c.tel).appendTo($tr);
+        });
+      };
+      const getPagination = ({
+        pageno,
+        pagesize,
+        totalcount,
+        blocksize = 5,
+      }) => {
+        let countOfpage = Math.ceil(totalcount / pagesize);
+        for (let pageno = 1; pageno <= countOfpage; pageno++) {
+          let prev = Math.floor((pageno - 1) / blocksize) * blocksize;
+          let start = prev + 1;
+          let end = prev + blocksize;
+          let next = end + 1;
+          if (end >= countOfpage) {
+            let end = countOfpage;
+            let next = 0;
+          }
+          return { pageno, prev, start, end, next };
+        }
+      };
+      const printPaginaition = ({ pageno, prev, start, end, next }) => {
+        const $ul = $("#page .pagination");
+        // jQuery로 요소를 선택한 경우 [0] > html
+        // console.log($ul[0]);
+        const url = "list.hrtml?pageno=1";
+        if (prev > 0) {
+          const $li = $(`<li class="page-item">`).appendTo($ul);
+          $(`<a class="page-link" href="${url}${prev}">`)
+            .text("이전")
+            .appendTo($li);
+        }
+        for (let i = start; i <= end; i++) {
+          const $li = $(`<li class="page-item">`).appendTo($ul);
+          $(`<a class="page-link" href="${url}${i}">`).text(i).appendTo($li);
+          if (i === pageno) $li.addClass("active");
+        }
+        if (next > 0) {
+          const $li = $(`<li class="page-item">`).appendTo($ul);
+          $(`<a class="page-link" href="${url}${next}">`)
+            .text("다음")
+            .appendTo($li);
+        }
+      };
+      $(async function () {
+        const pageno = getPageno(); // 1, 2
+        const response = await getResponse(pageno); // 3
+        console.log(response);
+        printContacts(response.contacts); // 4, 5
+        const pagination = getPagination(response); // 6 ~
+        printPaginaition(pagination);
+      });
+    </script>
+    <style>
+      #box {
+        width: auto;
+        height: 200px;
+      }
+      #page .table {
+     
+        width: 900px;
+        height: 400px;
+        margin: 0 auto;
+      }
+
+      #page tr {
+        text-align: center;
+      }
+      #page .pagination {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <div id="page">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+            <th>연락처</th>
+          </tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+  </body>
+</html>

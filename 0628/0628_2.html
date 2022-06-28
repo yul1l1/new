@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>연락처 목록 페이지</title>
+    <script>
+      const getPagination = ({
+        pageno,
+        pagesize,
+        totalcount,
+        blocksize = 5,
+      }) => {
+        let countOfpage = Math.ceil(totalcount / pagesize);
+        for (let pageno = 1; pageno <= countOfpage; pageno++) {
+          let prev = Math.floor((pageno - 1) / blocksize) * blocksize;
+          let start = prev + 1;
+          let end = prev + blocksize;
+          console.log(end);
+          let next = end + 1;
+          if (end >= countOfpage) {
+            let end = countOfpage;
+            let next = 0;
+          }
+          return { pageno, prev, start, end, next };
+        }
+      };
+
+      const printPaginaition = ({ pageno, prev, start, end, next }) => {
+        const $ul = $("#page .pagination");
+        if (prev > 0) {
+          const $li = $(`<li class="page-item">`).appendTo($ul);
+          $(`<a class="page-link" href="#">`).text("이전").appendTo($li);
+        }
+        for (let i = start; i <= end; i++) {
+          const $li = $(`<li class="page-item">`).appendTo($ul);
+          $(`<a class="page-link" href="#">`).text(i).appendTo($li);
+          if (i === pageno) $li.addClass("active");
+        }
+        if (next > 0) {
+          const $li = $(`<li class="page-item">`).appendTo($ul);
+          $(`<a class="page-link" href="#">`).text("다음").appendTo($li);
+        }
+      };
+      const printContacts = (contacts) => {
+        contacts.forEach((c, index) => {
+          const $list = $("#list");
+          const $tr = $("<tr>").appendTo($list);
+          $("<td>").text(c.no).appendTo($tr);
+          const $td = $("<td>").appendTo($tr);
+          // <td><a href="read.html?no=1111">제시머피</a></td>
+          $("<a>").attr("href", "read.html?no=1111").text(c.name).appendTo($td);
+          $("<td>").text(c.address).appendTo($tr);
+          $("<td>").text(c.tel).appendTo($tr);
+        });
+      };
+
+      $(async function () {
+        //  console.log(location.search);
+        // ?pageno=1, ?pageno=111
+        //  console.log(location.search.substr(8));
+        const a = location.search.substr(8);
+        // 값이 없을 떄 : null, undefiend, ''
+        let pageno = a === "" ? 1 : parseInt(a); // 만약 빈문자여리라면(pageno가 없는 경우)1로 바꾼다
+        // console.log(a === null);
+        // console.log(a === "");
+        // console.log(a === undefined);
+        const url = "http://sample.bmaster.kro.kr/contacts";
+        const parmas = { pageno: pageno, pagesize: 10 };
+        const response = await $.ajax({
+          url: url,
+          data: parmas,
+          method: "get",
+          processData: true,
+        });
+        console.log(response);
+        const pageData = getPagination(response);
+        printPaginaition(pageData);
+        printContacts(response.contacts);
+      });
+      // console.log(pageno);
+    </script>
+  </head>
+  <body>
+    <div id="page">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+            <th>연락처</th>
+          </tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+  </body>
+</html>
