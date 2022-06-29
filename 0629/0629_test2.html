@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.게시판 api 정보 가져오기</title>
+    <script>
+      // 페이지 형식 파악
+      function getPage() {
+        let pageno = parseInt(location.search.substr(2));
+        if (isNaN(pageno) == true) {
+          return 1;
+        } else {
+          return pageno;
+        }
+      }
+      // 데이터 가져오기
+      const getResponse = async (api, page, pagesize) => {
+        const params = { page, pagesize };
+        // 비동기 : 병렬 실행되는 함수
+        return await $.ajax({
+          url: api,
+          data: params,
+          method: "get",
+        });
+      };
+      // 내용 출력하기
+      const printContact = () => {
+
+      };
+      const getPagination = () => {};
+      const printPaginaition = () => {};
+      $(document).ready(async function () {
+        const pagesize = 10;
+        const api = "http://sample.bmaster.kro.kr/contacts";
+        console.log(api);
+        const page = getPage();
+        const response = await getResponse(api, page, pagesize); // await를 줘서 비동기로 바꿔준다
+        printContact(response);
+        const pagination = getPagination(response);
+        printPagination(pagination);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

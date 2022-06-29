@@ -26,9 +26,9 @@
       const getPageno = () => {
         // 방법1
         const str = location.search.substr(8);
-        console.log(str);
         const pageno = parseInt(str);
-        if (isNaN(pageno === true)) return 1;
+        if (isNaN(pageno === true)) 
+        return 1;
         return pageno;
         // 방법2
         //  const parmas = new URLSearchParams(location.search)
@@ -37,6 +37,7 @@
       const getResponse = async (pageno, pagesize = 10) => {
         const url = "http://sample.bmaster.kro.kr/contacts";
         const parmas = { pageno, pagesize };
+        console.log(parmas)
         return await $.ajax({
           url: url,
           data: parmas,
@@ -61,15 +62,16 @@
         totalcount,
         blocksize = 5,
       }) => {
-        let countOfpage = Math.ceil(totalcount / pagesize);
+console.log(pagesize)
+        const countOfpage = Math.ceil(totalcount / pagesize);
         for (let pageno = 1; pageno <= countOfpage; pageno++) {
-          let prev = Math.floor((pageno - 1) / blocksize) * blocksize;
-          let start = prev + 1;
+          const prev = Math.floor((pageno - 1) / blocksize) * blocksize;
+          const start = prev + 1;
           let end = prev + blocksize;
           let next = end + 1;
           if (end >= countOfpage) {
-            let end = countOfpage;
-            let next = 0;
+            end = countOfpage;
+            next = 0;
           }
           return { pageno, prev, start, end, next };
         }
@@ -78,7 +80,7 @@
         const $ul = $("#page .pagination");
         // jQuery로 요소를 선택한 경우 [0] > html
         // console.log($ul[0]);
-        const url = "list.hrtml?pageno=1";
+        const url = "/0628/0628_5.html?pageno=";
         if (prev > 0) {
           const $li = $(`<li class="page-item">`).appendTo($ul);
           $(`<a class="page-link" href="${url}${prev}">`)
@@ -100,7 +102,6 @@
       $(async function () {
         const pageno = getPageno(); // 1, 2
         const response = await getResponse(pageno); // 3
-        console.log(response);
         printContacts(response.contacts); // 4, 5
         const pagination = getPagination(response); // 6 ~
         printPaginaition(pagination);

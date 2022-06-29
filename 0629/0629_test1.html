@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.게시판 페이지 형식파악</title>
+    <script>
+      // REST는 화면에 데이터를 저장할 수 있다. 이동하면 모든 것은 처음부터
+      // list.html?page=3 (querystring) 형식으로 페이지 번호를 읽어오자
+      // list.html로 실행하면 빈문자열이다 이때 page는 > 1로 하자
+      function getPage() {
+        console.log(location.search); // 페이지에서 확인 빈문자열인지 확인코드 순서.1
+        console.log(location.search === ""); // true 순서.2
+        //  let pageno = location.search.substr(2) // 순서.3
+        // 만약 숫자 변환에 실패하면 NaN
+        let pageno = parseInt(location.search.substr(2)); //순서.4
+        console.log(pageno);
+        if (isNaN(pageno) == true) // {}else{} 생략
+          // 순서.5
+          return 1;
+        return pageno;
+      }
+      getPage();
+    </script>
+  </head>
+  <body></body>
+</html>

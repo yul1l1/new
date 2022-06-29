@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4.게시판 페이지네이션 계산하기</title>
+    <script>
+      // 페이지 형식 파악
+      function getPage() {
+        let pageno = parseInt(location.search.substr(2));
+        if (isNaN(pageno) == true) {
+          return 1;
+        } else {
+          return pageno;
+        }
+      }
+      // 데이터 가져오기
+      const getResponse = async (api, pageno, pagesize) => {
+        const params = { pageno, pagesize };
+        return await $.ajax({
+          url: api,
+          data: params, // {pageno:pageno, pagesize:pagesize}
+          method: "get",
+        });
+      };
+      // 내용 출력하기
+      const printContact = ({contacts}) => {
+        const $list = $("#list"); 
+        for (const c of contacts) {
+          const $tr = $(`<tr>`).appendTo($list);
+          $(`<td>`).text(c.no).appendTo($tr);
+          const $td = $(`<td>`).appendTo($tr);
+          $(`<a>`)
+            .attr(`href`, `/read.html?no=${c.no}`)
+            .text(c.name)
+            .appendTo($td); 
+          $(`<td>`).text(c.address).appendTo($tr);
+          $(`<td>`).text(c.tel).appendTo($tr);
+        }
+      };
+      // 페이지네이션 계산
+      const getPagination = ({pageno, pagesize, totalcount, blocksize =5}) => {
+        const countOfpage = Math.ceil(totalcount / pagesize);
+        const prev = Math.floor((pageno - 1) / blocksize) * blocksize;
+        const start = prev + 1;
+        let end = prev + blocksize;
+        let next = end + 1;
+        if (end >= countOfpage) {
+          end = countOfpage;
+          next = 0;
+        }
+        return { pageno, prev, start, end, next };
+      };
+      // const printPaginaition = () => {};
+      $(document).ready(async function () {
+        const pagesize = 10;
+        const api = "http://sample.bmaster.kro.kr/contacts";
+        const pageno = getPage();
+        const response = await getResponse(api, pageno, pagesize);
+        printContact(response);
+        const pagination = getPagination(response);
+        //printPagination(pagination);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="page">
+      <table>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>주소</th>
+            <th>연락처</th>
+          </tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+    </div>
+  </body>
+</html>
