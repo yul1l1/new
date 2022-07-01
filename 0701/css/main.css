@@ -1,24 +1,30 @@
-#page {
+#app {
   width: 800px;
+}
+
+#page {
+
   margin: 0 auto;
 }
-header, nav, footer {
+
+header,
+nav,
+footer {
   height: 50px;
   background-color: lightblue;
 }
+
 #main {
   display: flex;
   justify-content: space-between;
 }
+
 aside {
   flex-grow: 1;
   background-color: aquamarine;
 }
+
 section {
   flex-grow: 3;
   min-height: 600px;
 }
-
-
-
-

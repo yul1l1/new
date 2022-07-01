@@ -4,14 +4,14 @@
     <link rel="stylesheet" href="/board/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script  rel="stylesheet" src="/script/main.js"></script>
+    <script  rel="stylesheet" src="/board/script/main.js"></script>
     <script>
       const getNo =()=>{
         // read.html?no=1234 -> /contacts/1234
         const no = parseInt(location.search.substr(4));
         // no가 있으면 출력하고 없으면 list.html로 이동한다
         if(isNaN(no))
-          location.href="/list.html";
+          location.href="/board/list.html";
         else
           return no;
       }

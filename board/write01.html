@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/board/css/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/board/script/main.js" rel="stylesheet"></script>
+
+    <title>Document</title>
+    <script>
+      $(document).ready(function () {
+        init();
+        $('#add').click(function(){
+            // 파일 업로드 1
+            // $('#선택자') > jQuery 객체
+            // 나는 html를 요소를 : $('#선택자')[0], document.quetySelect('#선택자')
+            // console.log($('#photo')[0].files[0])
+            // console.log(document.querySelector('#photo'))
+
+            // 파일 업로드 2
+            // file 요소느 files라는 속성을 가지고 있다
+            // file 을 하나만 선택한다면 그 파일은 files[0]이다
+            const photo = $('#photo')[0].files[0];
+
+            // 파일 업로드 3
+            // urlencoded 형식으로는 파일을 보낼 수 없다 -> multipart/form-data
+            // js는 FormData 내장 객체를 제공한다
+            const formData = new FormData();
+            formData.append('photo',photo)
+
+            // processData : $ajax는 js객체를 자동으로 urlencoded 변환하는 속성
+            //               formData의 경우 false가 필요
+            // contentType : 서버로 보내는 형식, multipart의 경우 false
+            $.ajax({
+                url : '',
+                method : 'post',
+                data : formData,
+                processData : false,
+                contentType : false
+            })
+        })
+      });
+    </script>
+  </head>
+  <body>
+      <div id="page">
+        <header></header>
+        <nav></nav>
+      <div id="main">
+        <aside></aside>
+        <section>
+            <input type="file" id="photo" name="photo"><br>
+            <button type="button" id="add">추가</button>
+        </section>
+      </div>
+      <div>
+        <footer></footer>
+      </div>
+    </div>
+  </body>
+</html>
