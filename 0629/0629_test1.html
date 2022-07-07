@@ -14,14 +14,16 @@
         console.log(location.search === ""); // true 순서.2
         //  let pageno = location.search.substr(2) // 순서.3
         // 만약 숫자 변환에 실패하면 NaN
-        let pageno = parseInt(location.search.substr(2)); //순서.4
-        console.log(pageno);
+        let pageno = parseInt(location.search.substr(8)); //순서.4
+        console.log(pageno)
+        //  console.log(pageno);
         if (isNaN(pageno) == true) // {}else{} 생략
           // 순서.5
           return 1;
         return pageno;
       }
-      getPage();
+      const go =getPage();
+      console.log(go)
     </script>
   </head>
   <body></body>

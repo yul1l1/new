@@ -24,6 +24,7 @@
         $('#no').text(no);
         $('#name').text(name);
         $('#photo').attr('src', photo);
+        console.log(photo)
         $('#tel').text(tel);
         $('#address').text(address);
       }
@@ -33,13 +34,14 @@
         init();
         const no = getNo();
         const response = await getResponse(api, no);
+        console.log(no, api)
         console.log(response);
         printContact(response);
       });
     </script>
   </head>
   <body>
-    <table>
+    <table class="table table-hover">
       <tr>
         <td id="no"></td>
       </tr>

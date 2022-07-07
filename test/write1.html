@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        글쓰기 - writer, title, content 필수. attachment 선택  
+               - 파일이 포함될 수 있다 > form-data, POST
+               - 1. <form action="" method="post" enctype="multipart/form-data">
+               - 2. $.ajax() - FormData, processData: false, contentType: false
+        글변경  - 3. $.ajax() - urlencodede
+        -->
+        <!-- 방법1 -->
+        <form action="http://192.168.0.34:8081/board/new" method="post" enctype="multipart/form-data">
+            작성자 : <input type="text" name="writer" name="writer">
+            제목 :  <input type="text" id="title" name="title">
+            내용 :  <input type="text" id="content" name="content">
+            사진 :  <input type="file" id="attachment" name="attachment">
+            <!-- 
+                REST 서버는 내용만 보낸다. MVC 서버는 처리 후 이동(화면+내용)
+                form을 submit하면 내용만 보내버린다
+            -->
+            <button>글쓰기</button>
+        </form>
+        <!-- 방법2 -->
+        <form id="write_form">
+            작성자 : <input type="text" name="writer" name="writer">
+            제목 :  <input type="text" id="title" name="title">
+            내용 :  <input type="text" id="content" name="content">
+            사진 :  <input type="file" id="attachment" name="attachment">
+            <button id="write" type="button">글쓰기2</button>
+        </form>
+         <!-- 방법3 -->
+         <form id="update_form">
+         <input type="hiddem" name="bno" value="111" >
+            제목 :  <input type="text" id="title" name="title">
+            내용 :  <input type="text" id="content" name="content">
+            사진 :  <input type="file" id="attachment" name="attachment">
+            <button id="update" type="button">변경</button>
+        </form>
+    <script>
+        $(`#write`).click(function(){
+            // FormData jus 객체를 만드는 방법
+            // 1. const formData = new FormData(dociment.querySelector('폼id'));
+            // 2. 비어있는 폼을 만들고 하나씩 추가
+            //  - const formData = new FormData();
+            //  - formData.append('title', $('#title').val());
+            const formData =new FormData(document.querySelector('#write_form'))
+            $.ajax({
+                url : 'http://192.168.0.34:8081/board/new',
+                method : "post",
+                data : formData,
+                processData : false,    // data 속성을 urlencoded 형식으로 변환X
+                contentType : false     // contentType을 form-data로 지정
+            })
+        })
+
+        // update를 하려면 문제는 제목과 내용을 어떤 화면에 입력할까? 일기 화면
+        // 서버에서 받아온 글이 board js 객체라고 하자
+        $('#update').click(async function(){
+            await $.ajax({
+                url : "http://192.168.0.34:8081/board/" ,//+ board.bno // bno를 PathVariable로 넘겨야 한다, read 화면이 업데이트화면
+                method : 'put',
+                data: $('#update_form').serialize()
+            })
+        })
+
+        // 정리하면 
+        // 백이 MVC면 form을 submit하자
+        //      근데 jQuery로 검증받고싶다 > $('폼id').submit()
+        // 백이 REST면 $ajax
+        //      파일을 포함한 경우
+        //      new FormData(document.quertySeletor('#write_form'))
+        //      new FormData($(`#wrie_form`){0})
+        // urlencoded로 넘길경우
+        //      $('#폼id').serialize()
+    </script>
+    
+</body>
+</html>
