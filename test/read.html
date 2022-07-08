@@ -20,6 +20,7 @@
           return bno;
         }
       };
+
       const getResponse = async (url, bno) => {
         return await $.ajax(url + bno);
       };
@@ -55,6 +56,9 @@
         const response = await getResponse(url, bno);
         printContents(response);
         console.log(response);
+        $('#correction').attr('href',`/test/correction.html?bno=${bno}`)
+        $('#remove').attr('href',`/test/remove.html?bno=${bno}`)
+
       });
     </script>
   </head>
@@ -77,8 +81,8 @@
             <!-- 제목  사진  내용-->
           </div>
           <span id="button">
-            <a href="/test/correction.html"><button id="update_button">수정</button></a>
-            <a href=""><button id="update_button2">삭제</button></a>
+            <a id="correction"><button id="update_button">수정</button></a>
+            <a id="remove"><button id="update_button2">삭제</button></a>
           </span>
         </section>
       </div>

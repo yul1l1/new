@@ -12,15 +12,24 @@
     <script src="/test/script.js/main.js"></script>
     <title>4. 수정</title>
     <script>
-      $(document).ready(async function () {
+      $(document).ready(function () {
         init();
-        $("#update").click(async function () {
-          await $.ajax({
-            url: "http://192.168.0.34:8081/board/", //+ board.bno // bno를 PathVariable로 넘겨야 한다, read 화면이 업데이트화면
-            method: "put",
-            data: $("#update_form").serialize(),
-          });
-        });
+        const api = "http://192.168.0.34:8081/board/"
+        const bno = parseInt(location.search.substr(5));
+        console.log(bno)
+       const getData = $.ajax({
+            url : api+bno,
+            method : 'get'
+          })
+        
+        console.log(getData)
+        $("#update").click(function(){
+          $.ajax({
+            url : api+bno,
+            method : 'put'
+          })
+        })
+
       });
     </script>
   </head>
@@ -32,9 +41,11 @@
         <form id="update_form">
           <div>제목 : <input type="text" id="title" name="title" /></div>
           <textarea name="content" id="content" cols="30" rows="10"></textarea>
-          <input type="file" id="attachment" name="attachment">
+          <input type="file" id="attachment" name="attachment" />
           <button id="update" type="button">수정</button>
-          <a href="/test/read.html"><button  id="update" type="button">취소</button></a>
+          <a href="/test/read.html"
+            ><button id="update" type="button">취소</button></a
+          >
         </form>
       </section>
       <footer></footer>

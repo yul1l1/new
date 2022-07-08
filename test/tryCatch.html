@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>tryCatch</title>
+    <script>
+        $(document).ready(async function(){
+            try{
+            //const response = await $.ajax('http://192.168.0.34/board/all')
+            const response = await $.ajax('http://192.168.0.34/board/all/')
+            console.log(response)} catch(ex) {
+                // ex.response가 서버가 보내준 http 상태코드
+                // 서버와 연결되지 안흥면 0이 오더라
+                console.log(ex)
+                if(ex.status===0){
+                    location.href="index.html"
+                }
+                // 서버에서 논리오류가 발생하면 409가 리턴되도록 만들어놓음
+                if(ex.status===409){
+                    alert(ex.responseText)
+                    location.href = "index.html"
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+   
+</body>
+</html>
